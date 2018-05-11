@@ -1,4 +1,38 @@
 @import 'bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('../fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotoblack';
+    src: url('../fonts/roboto-black-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotolight';
+    src: url('../fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body{
     margin:0;
     padding:0;
@@ -6,6 +40,7 @@ body{
     background: linear-gradient(to right, #f96b6a , #fc588c);
     margin-top:50px;
     margin-bottom: 50px;
+    font-family: 'robotoregular';
 }
 
 img{
@@ -21,19 +56,97 @@ img{
         display: block;
         margin-bottom: 15px;
         border: none;
-        -webkit-box-shadow: 0 0 4px #000;
-        box-shadow: 0 0 4px #e8e8e8;
-        padding: 5px 10px;
+        -webkit-box-shadow: 0 0 4px #b9b9b9;
+        box-shadow: 0 0 4px #b9b9b9;
+        padding: 7px 10px 6px;
+        border-radius:0;
     }
     .defaultButt{
         background: linear-gradient(to right, #f96b6a , #fc588c);
         display: inline-block;
-        -webkit-box-shadow: 0 0 4px #000;
-        box-shadow: 0 0 4px #e8e8e8;
+        -webkit-box-shadow: 0 0 4px #b9b9b9;
+        box-shadow: 0 0 4px #b9b9b9;
         font-size: 14px;
         color:#fff;
         width:30%;
         border-radius:0;
         margin-right: 2%;
+        border:none;
+        padding: 6px 0;
+        @media screen and (max-width:414px) {
+            margin-bottom: 25px; 
+        }        
     }
+    .totalBar{
+        background: #f0f0f0;
+        font-family: 'robotobold';
+        margin-bottom: 20px;
+        .totalTxt{
+            width:50%;
+            display:inline-block;
+            font-size: 16px;
+            color:#fb617b;
+            padding: 7px 10px 5px;
+        }
+    }
+    .table thead th{
+        font-family: 'robotobold';
+        vertical-align: bottom;
+        border-bottom: 1px solid #dee2e6;
+        background: #fb5a88;
+        font-size: 16px;
+        color:#fff;
+        padding: 8px 10px;
+        @media screen and (max-width:414px) {
+            font-size: 13px; 
+        }         
+    }
+    .table td{
+        font-size: 12px;
+        color:#7f7f7f;
+        font-family: 'robotoregular';
+        padding: 6px 10px;
+        .buttBg{
+            background: #ff3758;
+            border: none;
+            cursor: pointer;
+            font-family: 'robotoregular';
+            color: #fff;
+            padding: 2px 10px 3px;
+        }
+    }
+    h2{
+        font-size: 24px;
+        color: #838383;
+        font-family: 'robotobold';
+        margin-bottom: 25px;
+    }
+    .ventasTable{        
+        color:#545454;
+        td{
+            text-align: center;
+            font-size: 16px;
+        }
+        td:nth-child(2){
+            color:#fa627b;
+        }
+    }
+    .calculationArea{
+        h3{
+            font-size: 20px;
+            color: #6c6c6c;
+            font-family: 'robotobold';            
+            text-align: center;
+            border-bottom: solid 1px #fc5a89;
+            padding: 10px 0;
+            margin-bottom: 15px;
+        }
+        .calcList{
+            display:block;
+            li{
+                display:block;
+            }
+        }
+    }
+    
 }

@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Collapse } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import * as FontAwesome from 'react-icons/lib/fa';
-import topLogo from './images/top-logo.png';
-import headerImg from './images/header-img.png';
-import formHeaderLogo from './images/form-header-logo.jpg';
-import forUsersLogo from './images/for-users-logo.jpg';
-import forPartnerLogo from './images/for-partner-logo.jpg';
-import phone from './images/phone.png';
-import googleplayIcon from './images/googleplay-icon.png';
-import appStore from './images/app-store.png';
-import bottomLogo from './images/bottom-logo.png';
-import fbIcon from './images/fb-icon.png';
-import twitIcon from './images/twit-icon.png';
-import instaIcon from './images/insta-icon.png';
+// import topLogo from './images/top-logo.png';
+
 
 class App extends Component {
 
@@ -31,21 +21,55 @@ class App extends Component {
     return (
       <div>
         <div className="container contentBg">
-         <div className="row">
-            <div className="col-sm-6 col-12">
-              <input className="defaultInput" type="text" name="name" />
-              <input className="defaultInput" type="text" name="name" />
-              <Button className="defaultButt" color='blue'>Save</Button>
-              <Button className="defaultButt" color='blue'>Reset</Button>
-              <Button className="defaultButt" color='blue'>Print</Button>
+          <div className="row">
+            <div className="col-sm-6 col-6">
+              <h2>Ventas</h2>
             </div>
-            <div className="col-sm-6 col-12">
-              <input className="defaultInput" type="text" name="name" />
-              <input className="defaultInput" type="text" name="name" />
-              <input className="defaultInput" type="text" name="name" />
-              <input className="defaultInput" type="text" name="name" />
+            <div className="col-sm-6 col-6">
+              <button className="defaultButt float-right">Coedren</button>
+            </div>           
+          </div>
+          <div className="row">
+            <div className="col-sm-12">
+            <table class="table ventasTable">                    
+                    <tbody>
+                      <tr>
+                        <td>xxxxxx</td>
+                        <td>Effectivo</td>
+                        <td>xxxxxx</td>                        
+                      </tr>
+                      <tr>
+                        <td>xxxxxx</td>
+                        <td>Effectivo</td>
+                        <td>xxxxxx</td>                         
+                      </tr>
+                      <tr>
+                        <td>xxxxxx</td>
+                        <td>Effectivo</td>
+                        <td>xxxxxx</td>                         
+                      </tr>
+                      <tr>
+                        <td>xxxxxx</td>
+                        <td>Effectivo</td>
+                        <td>xxxxxx</td>                        
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td>Total</td>
+                        <td>$000000</td>                        
+                      </tr>
+                    </tbody>
+            </table>
             </div>
-         </div>
+          </div>
+          <div className="row calculationArea">
+            <div className="col-sm-6 col-6">
+              <h3>Caja</h3>
+            </div>
+            <div className="col-sm-6 col-6">
+              <h3>Metors</h3>
+            </div>
+          </div>
         </div>
       </div>
     );
