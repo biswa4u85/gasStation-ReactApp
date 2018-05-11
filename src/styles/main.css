@@ -6286,254 +6286,32 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #FBFBFB; }
+  background: linear-gradient(to right, #f96b6a, #fc588c);
+  margin-top: 50px;
+  margin-bottom: 50px; }
 
 img {
   max-width: 100%;
   height: auto; }
 
-.scrollbar {
-  height: 67vh;
-  overflow-y: scroll; }
-
-#style-4::-webkit-scrollbar-track {
-  background-color: #fff; }
-
-#style-4::-webkit-scrollbar {
-  width: 4px;
-  background-color: #F5F5F5; }
-
-#style-4::-webkit-scrollbar-thumb {
-  background-color: #c5c5c5; }
-
-button:focus {
-  outline: none !important; }
-
-.fullContainer {
-  width: 100%;
-  display: block; }
-
-.noPadding {
-  padding: 0px !important; }
-
-.contUsButt {
-  margin: 7px 17px 0 0;
-  float: left; }
-  @media screen and (max-width: 414px) {
-    .contUsButt {
-      float: left;
-      margin: 7px 8px 0 0; } }
-
-.buttonBg {
-  background: linear-gradient(to right, #e46b50, #c2354c);
-  border: none;
-  border-radius: 24px;
-  padding: 8px 0;
-  text-align: center;
-  cursor: pointer;
-  font-size: 12px;
-  color: #fff;
-  text-transform: uppercase;
-  min-width: 140px;
-  box-shadow: 0 4px 11px 0px #dedede; }
-
-.headerShape {
-  display: block;
-  box-shadow: 0px 2px 2px 0px #e2e2e2; }
-  .headerShape .header {
-    padding: 20px 0; }
-    @media screen and (max-width: 414px) {
-      .headerShape .header {
-        text-align: center; } }
-    .headerShape .header .logo {
-      display: block;
-      padding: 0; }
-      @media screen and (max-width: 414px) {
-        .headerShape .header .logo {
-          padding: 0 0 20px 0; } }
-
-.contentArea {
-  margin: 0 3%; }
-
-.sliderImg {
-  position: relative; }
-  .sliderImg .sliderTxt {
-    position: absolute;
-    left: 31%;
-    bottom: 10%; }
-    @media screen and (max-width: 414px) {
-      .sliderImg .sliderTxt {
-        left: 3%;
-        bottom: 0%; } }
-    .sliderImg .sliderTxt h3 {
-      font-size: 34px;
-      color: #fff; }
-      @media screen and (max-width: 414px) {
-        .sliderImg .sliderTxt h3 {
-          font-size: 29px; } }
-    .sliderImg .sliderTxt p {
-      font-size: 20px;
-      color: #fff;
-      margin: 0; }
-
-.contentBox {
-  width: 88%;
-  margin: 30px auto 50px;
-  display: block; }
-  @media screen and (max-width: 414px) {
-    .contentBox {
-      width: 100%;
-      margin: 30px auto 0px; } }
-  .contentBox .titleTxt {
-    display: block;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #9a9a9a;
-    padding-bottom: 20px; }
-  .contentBox p {
-    font-size: 14px;
-    color: #9a9a9a;
-    line-height: 18px;
-    font-weight: normal;
-    text-align: left; }
-
-.formBox {
-  width: 70%;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  min-height: 520px; }
-  @media screen and (max-width: 414px) {
-    .formBox {
-      width: 100%;
-      min-height: 350px; } }
-
-.boxBg {
+.contentBg {
   background: #fff;
-  box-shadow: 0px 0px 30px #ccc;
-  display: block;
-  padding: 20px 40px; }
-  @media screen and (max-width: 414px) {
-    .boxBg {
-      padding: 20px 20px; } }
-  .boxBg .headerLogo {
-    display: block;
-    text-align: center; }
-  .boxBg .boxTitle {
-    display: block;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    color: #9a9a9a;
-    padding-bottom: 20px; }
-  .boxBg input {
-    display: block;
-    border: none;
-    border-bottom: solid 1px #bf6472;
-    font-size: 12px;
-    color: #d8d8d8;
-    padding: 2px 0px;
+  padding: 20px; }
+  .contentBg .defaultInput {
     width: 100%;
-    margin-bottom: 20px;
-    outline: none; }
-  .boxBg .getStartedButt {
-    margin-left: auto;
-    margin-right: auto;
     display: block;
-    margin-top: 150px; }
-    @media screen and (max-width: 414px) {
-      .boxBg .getStartedButt {
-        margin-top: 70px; } }
-
-.appBg {
-  background: linear-gradient(to right, #ec754f, #c5394d);
-  display: block; }
-  @media screen and (max-width: 414px) {
-    .appBg {
-      padding-bottom: 20px;
-      margin-top: 20px; } }
-  .appBg .phoneImg {
-    text-align: center; }
-  .appBg .titletxt {
-    font-size: 26px;
+    margin-bottom: 15px;
+    border: none;
+    -webkit-box-shadow: 0 0 4px #000;
+    box-shadow: 0 0 4px #e8e8e8;
+    padding: 5px 10px; }
+  .contentBg .defaultButt {
+    background: linear-gradient(to right, #f96b6a, #fc588c);
+    display: inline-block;
+    -webkit-box-shadow: 0 0 4px #000;
+    box-shadow: 0 0 4px #e8e8e8;
+    font-size: 14px;
     color: #fff;
-    text-shadow: 0 0 4px #000;
-    display: block;
-    font-weight: bold;
-    margin: 118px 0 20px; }
-    @media screen and (max-width: 414px) {
-      .appBg .titletxt {
-        margin: 40px 0 20px; } }
-
-.socialBg {
-  background: #4a4a4a;
-  padding: 50px 0;
-  display: block; }
-  @media screen and (max-width: 414px) {
-    .socialBg {
-      text-align: center; } }
-  .socialBg .titleTxt {
-    font-size: 36px;
-    color: #fff;
-    text-shadow: 0 0 2px #333333;
-    display: block;
-    font-weight: bold; }
-    @media screen and (max-width: 414px) {
-      .socialBg .titleTxt {
-        padding-top: 25px; } }
-  .socialBg .socielIcons {
-    padding: 8px 60px 0 10px; }
-    @media screen and (max-width: 414px) {
-      .socialBg .socielIcons {
-        padding: 8px 24px 0 37px; } }
-
-.navbar-toggler {
-  font-size: 1.75rem !important;
-  line-height: 1 !important;
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
-  border-radius: 0.25rem !important;
-  padding-top: 7px !important;
-  color: #c4384c;
-  float: left; }
-
-.collapse.show {
-  display: block; }
-
-.navbar-nav {
-  display: flex !important;
-  flex-direction: inherit !important;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-  text-align: right; }
-  @media screen and (max-width: 414px) {
-    .navbar-nav {
-      display: block !important; } }
-  .navbar-nav li {
-    padding: 0 50px 0 0; }
-    @media screen and (max-width: 414px) {
-      .navbar-nav li {
-        padding: 0; } }
-    .navbar-nav li a {
-      color: #4a4a4a;
-      font-weight: 600;
-      font-size: 14px; }
-
-.navbar-collapse {
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center; }
-
-.navbar .foot-navs {
-  background: #eee;
-  padding: 15px 0px;
-  border-radius: 5px; }
-
-.navbar .foot-navs .nav-item a {
-  color: #919191;
-  font-weight: bold; }
+    width: 30%;
+    border-radius: 0;
+    margin-right: 2%; }
