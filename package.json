@@ -9,7 +9,11 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-icons": "^2.2.7",
+<<<<<<< HEAD
     "react-router-dom": "^4.2.2",
+=======
+    "react-navigation": "^2.0.1",
+>>>>>>> 8e0157158c7b25ebb0996395bc9f993f2d05db3e
     "react-scripts": "1.1.4",
     "reactstrap": "^6.0.1"
   },
