@@ -18,60 +18,13 @@ class App extends Component {
 
 
   render() {
-    return (
-      <div>
-        <div className="container contentBg">
-          <div className="row">
-            <div className="col-sm-6 col-6">
-              <h2>Ventas</h2>
-            </div>
-            <div className="col-sm-6 col-6">
-              <button className="defaultButt float-right">Coedren</button>
-            </div>           
-          </div>
-          <div className="row">
-            <div className="col-sm-12">
-            <table class="table ventasTable">                    
-                    <tbody>
-                      <tr>
-                        <td>xxxxxx</td>
-                        <td>Effectivo</td>
-                        <td>xxxxxx</td>                        
-                      </tr>
-                      <tr>
-                        <td>xxxxxx</td>
-                        <td>Effectivo</td>
-                        <td>xxxxxx</td>                         
-                      </tr>
-                      <tr>
-                        <td>xxxxxx</td>
-                        <td>Effectivo</td>
-                        <td>xxxxxx</td>                         
-                      </tr>
-                      <tr>
-                        <td>xxxxxx</td>
-                        <td>Effectivo</td>
-                        <td>xxxxxx</td>                        
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>Total</td>
-                        <td>$000000</td>                        
-                      </tr>
-                    </tbody>
-            </table>
-            </div>
-          </div>
-          <div className="row calculationArea">
-            <div className="col-sm-6 col-6">
-              <h3>Caja</h3>
-            </div>
-            <div className="col-sm-6 col-6">
-              <h3>Metors</h3>
-            </div>
-          </div>
-        </div>
-      </div>
+    return (      
+        <div className="loginBg">
+            <button className="loginBbutt">Login</button>
+            <div className="logo">Logo</div>
+            <button className="defaultButt">BUYER</button>
+            <button className="defaultButt">USER</button>
+        </div>      
     );
   }
 }

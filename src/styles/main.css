@@ -6309,15 +6309,52 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(to right, #f96b6a, #fc588c);
-  margin-top: 50px;
-  margin-bottom: 50px;
   font-family: 'robotoregular'; }
 
 img {
   max-width: 100%;
   height: auto; }
+
+.contentCotainer {
+  background: linear-gradient(to right, #f96b6a, #fc588c);
+  margin-top: 50px;
+  margin-bottom: 50px; }
+
+.loginBg {
+  width: 320px;
+  padding: 20px;
+  background: linear-gradient(to right, #f96b6a, #fc588c);
+  box-shadow: 0 0 20px #b9b9b9;
+  margin: 50px auto 0; }
+  .loginBg .logo {
+    display: block;
+    text-align: center;
+    font-size: 36px;
+    font-family: 'robotobold';
+    padding: 65px 0;
+    color: #fff; }
+  .loginBg .defaultButt {
+    font-size: 24px;
+    color: #373737;
+    font-family: 'robotobold';
+    border: none;
+    background: #fff;
+    padding: 10px 0;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #9c102b;
+    width: 100%;
+    margin-bottom: 30px;
+    cursor: pointer; }
+  .loginBg .loginBbutt {
+    width: 85px;
+    border: solid 1px #fff;
+    padding: 3px 10px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'robotobold';
+    float: right;
+    background: #fc598b;
+    cursor: pointer; }
 
 .contentBg {
   background: #fff;
@@ -6345,7 +6382,8 @@ img {
     padding: 6px 0; }
     @media screen and (max-width: 414px) {
       .contentBg .defaultButt {
-        margin-bottom: 25px; } }
+        margin-bottom: 25px;
+        min-width: 100px; } }
   .contentBg .totalBar {
     background: #f0f0f0;
     font-family: 'robotobold';
@@ -6401,5 +6439,81 @@ img {
     margin-bottom: 15px; }
   .contentBg .calculationArea .calcList {
     display: block; }
+    @media screen and (max-width: 414px) {
+      .contentBg .calculationArea .calcList {
+        padding: 0; } }
     .contentBg .calculationArea .calcList li {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      color: #a5a5a5; }
+      .contentBg .calculationArea .calcList li .form-group {
+        margin-bottom: 10px; }
+      .contentBg .calculationArea .calcList li .smlInput {
+        width: 40%;
+        background: #fff;
+        border: solid 1px #c8c8c8;
+        padding: 3px 5px;
+        display: inline-block;
+        border-radius: 0;
+        font-size: 14px; }
+      .contentBg .calculationArea .calcList li .compliantTxt {
+        color: #fb617b;
+        padding: 0 25px;
+        display: inline-block; }
+      .contentBg .calculationArea .calcList li .compliantAmt {
+        padding: 0 25px 0 0;
+        display: inline-block;
+        min-width: 65px; }
+      .contentBg .calculationArea .calcList li .compliantRes {
+        padding: 0 25px;
+        display: inline-block; }
+  .contentBg .calculationArea .metors {
+    display: block; }
+    @media screen and (max-width: 414px) {
+      .contentBg .calculationArea .metors {
+        padding: 0; } }
+    .contentBg .calculationArea .metors li {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+      color: #a5a5a5;
+      list-style: none; }
+      .contentBg .calculationArea .metors li .form-group {
+        margin-bottom: 10px; }
+      .contentBg .calculationArea .metors li .smlInput {
+        width: 40%;
+        background: #fff;
+        border: solid 1px #c8c8c8;
+        padding: 3px 5px;
+        display: inline-block;
+        border-radius: 0;
+        font-size: 14px; }
+      .contentBg .calculationArea .metors li .compliantTxt {
+        color: #fb617b;
+        padding: 0 25px;
+        display: inline-block; }
+      .contentBg .calculationArea .metors li .compliantAmt {
+        padding: 0 25px 0 0;
+        display: inline-block;
+        min-width: 65px; }
+      .contentBg .calculationArea .metors li .compliantRes {
+        padding: 0 25px;
+        display: inline-block; }
+      .contentBg .calculationArea .metors li .totalAmt {
+        border-top: solid 1px #cdcdcd;
+        padding: 10px 21% 10px 0;
+        text-align: right;
+        display: block;
+        margin-top: 21px; }
+        @media screen and (max-width: 414px) {
+          .contentBg .calculationArea .metors li .totalAmt {
+            padding: 10px 10% 10px 0; } }
+    .contentBg .calculationArea .metors li.finalAmt {
+      border-top: solid 1px #cdcdcd;
+      padding: 10px 16% 10px 0;
+      text-align: right;
       display: block; }
+      @media screen and (max-width: 414px) {
+        .contentBg .calculationArea .metors li.finalAmt {
+          padding: 10px 4% 10px 0; } }

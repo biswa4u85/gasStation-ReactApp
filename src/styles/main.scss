@@ -36,10 +36,6 @@
 body{
     margin:0;
     padding:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background: linear-gradient(to right, #f96b6a , #fc588c);
-    margin-top:50px;
-    margin-bottom: 50px;
     font-family: 'robotoregular';
 }
 
@@ -47,6 +43,52 @@ img{
     max-width: 100%;
     height: auto;
 }
+.contentCotainer{
+    background: linear-gradient(to right, #f96b6a , #fc588c);
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+
+    .loginBg{
+        width:320px;
+        padding:20px;
+        background: linear-gradient(to right, #f96b6a , #fc588c);
+        box-shadow: 0 0 20px #b9b9b9;
+        margin: 50px auto 0;
+        .logo{
+            display: block;
+            text-align: center;
+            font-size: 36px;
+            font-family: 'robotobold';
+            padding: 65px 0;
+            color: #fff;
+        }
+        .defaultButt{
+            font-size: 24px;
+            color:#373737;
+            font-family: 'robotobold';
+            border:none;
+            background: #fff;
+            padding:10px 0;
+            border-radius: 4px;
+            box-shadow: 0 0 8px #9c102b;
+            width:100%;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        .loginBbutt{
+            width: 85px;
+            border: solid 1px #fff;
+            padding: 3px 10px;
+            font-size: 14px;
+            color: #fff;
+            font-family: 'robotobold';
+            float: right;
+            background: #fc598b;
+            cursor: pointer;
+        }
+    }
+
 
 .contentBg{
     background: #fff;
@@ -75,6 +117,7 @@ img{
         padding: 6px 0;
         @media screen and (max-width:414px) {
             margin-bottom: 25px; 
+            min-width: 100px;
         }        
     }
     .totalBar{
@@ -142,11 +185,101 @@ img{
             margin-bottom: 15px;
         }
         .calcList{
-            display:block;
+            display:block;   
+            @media screen and (max-width:414px) {
+                padding:0;
+            }        
             li{
                 display:block;
+                font-size: 16px;
+                font-weight: bold;
+                color: #a5a5a5;
+                .form-group{
+                    margin-bottom: 10px;
+                }
+                .smlInput{
+                    width:40%;
+                    background: #fff;
+                    border:solid 1px #c8c8c8;
+                    padding: 3px 5px;
+                    display: inline-block;
+                    border-radius: 0;
+                    font-size: 14px;
+                }
+                .compliantTxt{
+                    color:#fb617b;
+                    padding: 0 25px;
+                    display: inline-block;
+                }
+                .compliantAmt{                    
+                    padding: 0 25px 0 0;
+                    display: inline-block;
+                    min-width: 65px;
+                }
+                .compliantRes{                    
+                    padding: 0 25px;
+                    display: inline-block;
+                }
             }
         }
-    }
+        .metors{
+            display:block;  
+            @media screen and (max-width:414px) {
+                padding:0;
+            }          
+            li{
+                display:block;
+                font-size: 16px;
+                font-weight: bold;
+                color: #a5a5a5; 
+                list-style: none;
+                .form-group{
+                    margin-bottom: 10px;
+                }
+                .smlInput{
+                    width:40%;
+                    background: #fff;
+                    border:solid 1px #c8c8c8;
+                    padding: 3px 5px;
+                    display: inline-block;
+                    border-radius: 0;
+                    font-size: 14px;
+                }
+                .compliantTxt{
+                    color:#fb617b;
+                    padding: 0 25px;
+                    display: inline-block;
+                }
+                .compliantAmt{                    
+                    padding: 0 25px 0 0;
+                    display: inline-block;
+                    min-width: 65px;
+                }
+                .compliantRes{                    
+                    padding: 0 25px;
+                    display: inline-block;
+                }
+                .totalAmt{
+                    border-top: solid 1px #cdcdcd;
+                    padding: 10px 21% 10px 0;
+                    text-align: right;
+                    display: block;
+                    margin-top: 21px;
+                    @media screen and (max-width:414px) {
+                        padding: 10px 10% 10px 0;
+                    }
+                }
+                
+            }
+            li.finalAmt{
+                border-top: solid 1px #cdcdcd;
+                padding: 10px 16% 10px 0;
+                text-align: right;
+                display: block; 
+                @media screen and (max-width:414px) {
+                    padding: 10px 4% 10px 0;
+                }               
+            }
+    }   }
     
 }
