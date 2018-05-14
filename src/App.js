@@ -1,36 +1,23 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import * as FontAwesome from 'react-icons/lib/fa';
-// import topLogo from './images/top-logo.png';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Main from './Main'
+import App2 from './App2'
+import App3 from './App3'
 
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
-  }
-
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
-  }
-
-  render() {
-    return (      
-        <div className="loginBg">
-            <button className="loginBbutt">Login</button>
-            <div className="logo">Logo</div>
+    render() {
+        return (
             <Router>
-            <Link to="/App2"><button className="defaultButt">BUYER</button></Link>
-            <Link to="/App3"><button className="defaultButt">USER</button></Link>
-            <Route path="/App2" component={App2} />
-            <Route path="/App3" component={App3} />
+                <Switch>
+                    <Route exact path='/' component={Main} />
+                    <Route exact path='/app2' component={App2} />
+                    <Route exact path='/app3' component={App3} />
+                </Switch>
             </Router>
-        </div>      
-    );
-  }
+        );
+    }
 }
 
 export default App;
