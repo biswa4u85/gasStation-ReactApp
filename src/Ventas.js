@@ -113,7 +113,7 @@ class Ventas extends Component {
                     <span className="compliantTxt">1</span><span className="compliantAmt">xxx</span>  <Input className="smlInput" type="number" />  <span className="compliantRes">YYY</span>
                   </FormGroup>
                 </li>
-                <li>
+                <li> 
                   <FormGroup>
                     <span className="compliantTxt">1</span><span className="compliantAmt">xxx</span>  <Input className="smlInput" type="number" />  <span className="compliantRes">YYY</span>
                   </FormGroup>

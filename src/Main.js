@@ -93,7 +93,7 @@ class Main extends Component {
     }
 
     handleDelete = async () => {
-        await this.props.createNew({ variables: { id: uuidV4(), name: 'om2', ingredients: [11, 22, 33], instructions: [1, 2, 3] } })
+        await this.props.createNew({ variables: { id: uuidV4(), name: 'biswa', ingredients: [11, 22, 33], instructions: [1, 2, 3] } })
         this.props.allPostsQuery.refetch()
     }
 }
