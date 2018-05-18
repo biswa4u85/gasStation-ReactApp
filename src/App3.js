@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import * as FontAwesome from 'react-icons/lib/fa';
+import { FormGroup, Input } from 'reactstrap';
+// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import * as FontAwesome from 'react-icons/lib/fa';
 // import topLogo from './images/top-logo.png';
 
 

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import * as FontAwesome from 'react-icons/lib/fa';
-// import topLogo from './images/top-logo.png';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { withRouter } from 'react-router-dom'
 
+import uuidV4 from 'uuid/v4'
+import { graphql, compose } from 'react-apollo'
+import { ALL_POSTS_QUERY } from './queries/query'
+import CreateRecipe from './mutations/CreateRecipe'
 
 class App2 extends Component {
 
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location.key !== nextProps.location.key) {
+      this.props.allPostsQuery.refetch()
+    }
   }
-
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
-  }
-
 
   render() {
     return (
@@ -30,7 +28,7 @@ class App2 extends Component {
                 <FormGroup>
                   <Input className="defaultInput" type="text" name="password" id="" placeholder="Venta" />
                 </FormGroup>
-                <Button className="defaultButt">Save</Button>
+                <Button onClick={this.handleDelete} className="defaultButt">Save</Button>
                 <Button className="defaultButt">Reset</Button>
                 <Button className="defaultButt">Print</Button>
               </Form>
@@ -72,30 +70,17 @@ class App2 extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>05-06-2018</td>
-                    <td>#01</td>
-                    <td>xxxxxx</td>
-                    <td>xxxxxx</td>
-                    <td>000000</td>
-                    <td><button className="buttBg">Button</button></td>
-                  </tr>
-                  <tr>
-                    <td>05-06-2018</td>
-                    <td>#01</td>
-                    <td>xxxxxx</td>
-                    <td>xxxxxx</td>
-                    <td>000000</td>
-                    <td><button className="buttBg">Button</button></td>
-                  </tr>
-                  <tr>
-                    <td>05-06-2018</td>
-                    <td>#01</td>
-                    <td>xxxxxx</td>
-                    <td>xxxxxx</td>
-                    <td>000000</td>
-                    <td><button className="buttBg">Button</button></td>
-                  </tr>
+                  {
+                    this.props.allPostsQuery.listRecipes.items.map((item, i) => <tr key={i}>
+                      <td>05-06-2018</td>
+                      <td>#01</td>
+                      <td>{item.name}</td>
+                      <td>xxxxxx</td>
+                      <td>000000</td>
+                      <td><button className="buttBg">Button</button></td>
+                    </tr>
+                    )
+                  }
                 </tbody>
               </table>
             </div>
@@ -103,7 +88,35 @@ class App2 extends Component {
         </div>
       </div>
     );
+
+
   }
+
+  handleDelete = async () => {
+    await this.props.createRecipe({ variables: { id: uuidV4(), name: 'om2', ingredients: [11, 22, 33], instructions: [1, 2, 3] } })
+  }
+
 }
 
-export default App2;
+// export default graphql(ALL_POSTS_QUERY, { name: 'allPostsQuery' })(App2)
+
+
+const DetailPageWithGraphQL = compose(
+  graphql(ALL_POSTS_QUERY, {
+    name: 'allPostsQuery',
+  }),
+  graphql(CreateRecipe, {
+    name: 'createRecipe'
+  })
+)(App2)
+
+const DetailPageWithDelete = graphql(CreateRecipe)(DetailPageWithGraphQL)
+export default withRouter(DetailPageWithDelete)
+
+
+// export default graphql(ALL_POSTS_QUERY, {
+//   name: 'allPostsQuery',
+//   options: {
+//     fetchPolicy: 'network-only',
+//   },
+// })(App2)

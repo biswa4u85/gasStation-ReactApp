@@ -1,9 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
 import './styles/main.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));
+
+import AWSAppSyncClient from "aws-appsync";
+import { Rehydrated } from 'aws-appsync-react';
+import { ApolloProvider } from 'react-apollo';
+import appSyncConfig from './AppSync';
+
+
+const client = new AWSAppSyncClient({
+    url: appSyncConfig.graphqlEndpoint,
+    region: appSyncConfig.region,
+    auth: {
+        type: appSyncConfig.authenticationType,
+        apiKey: appSyncConfig.apiKey,
+    }
+});
+
+
+const WithProvider = () => (
+    <ApolloProvider client={client}>
+        <Rehydrated
+            render={({ rehydrated }) => (
+                rehydrated ? <App /> : <strong>Your custom UI componen here...</strong>
+            )}
+        />
+    </ApolloProvider>
+);
+
+ReactDOM.render(<WithProvider />, document.getElementById('root'));
 registerServiceWorker();
