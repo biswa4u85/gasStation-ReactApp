@@ -5,7 +5,7 @@ import { FormGroup, Input } from 'reactstrap';
 // import topLogo from './images/top-logo.png';
 
 
-class App3 extends Component {
+class Ventas extends Component {
 
   constructor(props) {
     super(props);
@@ -147,4 +147,4 @@ class App3 extends Component {
   }
 }
 
-export default App3;
+export default Ventas;

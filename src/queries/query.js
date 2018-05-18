@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const ALL_POSTS_QUERY = gql`
+export const ALL_DATA_QUERY = gql`
 query listRecipes {
   listRecipes {
     items {
@@ -8,6 +8,7 @@ query listRecipes {
       name
       instructions
       ingredients
+      }
     }
   }
-}`
+`
