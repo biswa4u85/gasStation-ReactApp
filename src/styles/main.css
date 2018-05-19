@@ -6306,6 +6306,23 @@ a.text-dark:hover, a.text-dark:focus {
   font-weight: normal;
   font-style: normal; }
 
+.scrollbar2 {
+  float: left;
+  max-height: 215px;
+  width: 100%;
+  overflow-y: auto; }
+
+#style-6::-webkit-scrollbar-track {
+  background-color: transparent; }
+
+#style-6::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent; }
+
+#style-6::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  background-image: none; }
+
 body {
   margin: 0;
   padding: 0;
@@ -6317,9 +6334,8 @@ img {
 
 .contentCotainer {
   background: linear-gradient(to right, #f96b6a, #fc588c);
-  padding-top: 50px;
-  padding-bottom: 50px;
-  height: 100vh; }
+  padding: 20px 0;
+  height: calc(100vh - 60px); }
 
 .loginBg {
   width: 320px;
@@ -6518,3 +6534,27 @@ img {
       @media screen and (max-width: 414px) {
         .contentBg .calculationArea .metors li.finalAmt {
           padding: 10px 4% 10px 0; } }
+
+.navi {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+  .navi li {
+    display: inline-block;
+    padding: 18px 20px; }
+    .navi li a {
+      font-size: 16px;
+      color: #fc588c; }
+    .navi li a:hover {
+      color: #000;
+      text-decoration: none; }
+
+.loginTxt {
+  font-size: 14px;
+  color: #000;
+  padding: 18px 0;
+  display: block;
+  text-align: right; }
+  .loginTxt a {
+    color: #000; }

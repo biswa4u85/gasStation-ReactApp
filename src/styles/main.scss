@@ -33,6 +33,28 @@
 
 }
 
+  .scrollbar2{
+    float: left;  
+    max-height:215px;
+    width: 100%;
+    overflow-y: auto;
+  }
+
+  #style-6::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  #style-6::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+  }
+  
+  #style-6::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    background-image: none;
+  }
+  
+
 body{
     margin:0;
     padding:0;
@@ -45,9 +67,8 @@ img{
 }
 .contentCotainer{
     background: linear-gradient(to right, #f96b6a , #fc588c);
-    padding-top:50px;
-    padding-bottom: 50px;
-    height: 100vh;
+    padding:20px 0;
+    height: calc(100vh - 60px);
 }
 
     .loginBg{
@@ -284,3 +305,33 @@ img{
     }   }
     
 }
+
+
+    .navi{
+        display: block;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        li{
+            display: inline-block;
+            padding: 18px 20px;
+            a{
+                font-size: 16px;
+                color: #fc588c
+            }
+            a:hover{
+                color: #000;
+                text-decoration: none;
+            }
+        }
+    }
+    .loginTxt{
+        font-size: 14px;
+        color: #000;
+        padding: 18px 0;
+        display: block;
+        text-align: right;
+        a{
+            color: #000;
+        }        
+    }
