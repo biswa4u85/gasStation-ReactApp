@@ -7,23 +7,23 @@ class Nav extends Component {
     return (
       <div className="container">
         <div className="row">
-        <div className="col-sm-4 logo">            
-            <img src={logo} alt=""/>        
-            </div>
-            <div className="col-sm-4">
-                <ul className="navi">
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/ventas">Ventas</Link>
-                  </li>
-                </ul>
-            </div>
-            <div className="col-sm-4">
-                <Link to="/ventas" className="loginTxt">Login</Link>
-            </div>
-        </div>      
+          <div className="col-sm-4 logo">
+            <img src={logo} alt="" />
+          </div>
+          <div className="col-sm-4">
+            <ul className="navi">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/ventas">Ventas</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="col-sm-4">
+            <Link to="/" className="loginTxt">Login</Link>
+          </div>
+        </div>
       </div>
     );
   }

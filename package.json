@@ -6,6 +6,7 @@
     "aws-appsync": "^1.0.20",
     "aws-appsync-react": "^1.0.11",
     "bootstrap": "^4.1.0",
+    "classnames": "^2.2.5",
     "glamor": "^2.20.40",
     "graphql-tag": "^2.9.2",
     "node-sass-chokidar": "^1.2.2",
@@ -16,7 +17,8 @@
     "react-icons": "^2.2.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "reactstrap": "^6.0.1"
+    "reactstrap": "^6.0.1",
+    "validator": "^10.2.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/styles/ -o src/styles/",
