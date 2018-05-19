@@ -9,10 +9,56 @@ import { CREATE_NEW } from './mutations/mutation'
 
 class Main extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: uuidV4(),
+            date: new Date(),
+            invoice: 'aa',
+            galons: 'aaa',
+            sale: 'aa',
+            cash: 'aa',
+            ccard: 'aa',
+            gcard: 'aa',
+            others: 'aa',
+            price: 'aaa',
+            total: 'aa',
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         if (this.props.location.key !== nextProps.location.key) {
             this.props.allPostsQuery.refetch()
         }
+    }
+
+    handleChange(event) {
+        event.preventDefault();
+        let formValues = {}
+        let name = event.target.name;
+        let value = event.target.value;
+        formValues[name] = value;
+        this.setState(formValues)
+    }
+
+    handleReset(event) {
+        this.setState({
+            date: '',
+            invoice: '',
+            galons: '',
+            sale: '',
+            cash: '',
+            ccard: '',
+            gcard: '',
+            others: '',
+            price: '',
+            total: '',
+        })
+    }
+
+    handleSave = async () => {
+        await this.props.createNew({ variables: this.state })
+        this.props.allPostsQuery.refetch()
     }
 
     render() {
@@ -23,36 +69,35 @@ class Main extends Component {
                         <div className="col-sm-6 col-12">
                             <Form>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="email" id="" placeholder="Galones" />
+                                    <Input className="defaultInput" type="text" name="galons" value={this.state.galons} onChange={this.handleChange.bind(this)} placeholder="Galons" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="password" id="" placeholder="Venta" />
+                                    <Input className="defaultInput" type="text" name="sale" value={this.state.sale} onChange={this.handleChange.bind(this)} placeholder="Sale" />
                                 </FormGroup>
-                                <Button onClick={this.handleDelete} className="defaultButt">Save</Button>
-                                <Button className="defaultButt">Reset</Button>
-                                <Button className="defaultButt">Print</Button>
+                                <Button onClick={this.handleSave} className="defaultButt">Print</Button>
+                                <Button type="button" onClick={this.handleReset.bind(this)} className="defaultButt">Reset</Button>
                             </Form>
                         </div>
                         <div className="col-sm-6 col-12">
                             <Form>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="email" id="" placeholder="Effectivo" />
+                                    <Input className="defaultInput" type="text" name="cash" value={this.state.cash} onChange={this.handleChange.bind(this)} placeholder="Cash" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="password" id="" placeholder="Tarjeto" />
+                                    <Input className="defaultInput" type="text" name="ccard" value={this.state.ccard} onChange={this.handleChange.bind(this)} placeholder="Credit Card" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="email" id="" placeholder="Boro" />
+                                    <Input className="defaultInput" type="text" name="gcard" value={this.state.gcard} onChange={this.handleChange.bind(this)} placeholder="Gift Card" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="password" id="" placeholder="" />
+                                    <Input className="defaultInput" type="text" name="others" value={this.state.others} onChange={this.handleChange.bind(this)} placeholder="" />
                                 </FormGroup>
                             </Form>
                         </div>
                         <div className="col-sm-12">
                             <div className="totalBar">
                                 <div className="totalTxt">Total : xxxxx</div>
-                                <div className="totalTxt">Dweta : xxxxx</div>
+                                <div className="totalTxt">Remaining : xxxxx</div>
                             </div>
                         </div>
                     </div>
@@ -63,21 +108,21 @@ class Main extends Component {
                                     <tr>
                                         <th>Date</th>
                                         <th>Invoice</th>
-                                        <th>Garclem</th>
-                                        <th>Prclo</th>
+                                        <th>Galons</th>
+                                        <th>Price</th>
                                         <th>Total</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        this.props.allPostsQuery.listRecipes.items.map((item, i) => <tr key={i}>
-                                            <td>05-06-2018</td>
-                                            <td>#01</td>
-                                            <td>{item.name}</td>
-                                            <td>xxxxxx</td>
-                                            <td>000000</td>
-                                            <td><button className="buttBg">Button</button></td>
+                                        this.props.allPostsQuery.listGalons.items.map((item, i) => <tr key={i}>
+                                            <td>{item.date}</td>
+                                            <td>{item.invoice}</td>
+                                            <td>{item.galons}</td>
+                                            <td>{item.price}</td>
+                                            <td>{item.total}</td>
+                                            <td><button className="buttBg">Print</button></td>
                                         </tr>
                                         )
                                     }
@@ -89,13 +134,8 @@ class Main extends Component {
             </div>
         );
 
-
     }
 
-    handleDelete = async () => {
-        await this.props.createNew({ variables: { id: uuidV4(), name: 'biswa', ingredients: [11, 22, 33], instructions: [1, 2, 3] } })
-        this.props.allPostsQuery.refetch()
-    }
 }
 
 
@@ -108,5 +148,5 @@ const DetailPageWithGraphQL = compose(
     })
 )(Main)
 
-const DetailPageWithDelete = graphql(CREATE_NEW)(DetailPageWithGraphQL)
+const DetailPageWithDelete = graphql(ALL_DATA_QUERY)(DetailPageWithGraphQL)
 export default withRouter(DetailPageWithDelete)
