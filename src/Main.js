@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Popover, Label, PopoverHeader, PopoverBody } from 'reactstrap';
 import { withRouter } from 'react-router-dom'
 
 import uuidV4 from 'uuid/v4'
@@ -111,7 +111,7 @@ class Main extends Component {
                     </div>
                     <div className="row">
                         <div className="col-sm-12">
-                            <table className="table">
+                            <table className="table headerBox">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
@@ -124,7 +124,7 @@ class Main extends Component {
                                 </thead>
                             </table>
                             <div className="scrollbar2" id="style-6">
-                                <table className="table">
+                                <table className="table childBox">
                                     <tbody>
                                         {
                                             this.props.allPostsQuery.listGalons.items.map((item, i) =>
@@ -136,8 +136,28 @@ class Main extends Component {
                                                     <td>{item.total}</td>
                                                     <td><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
                                                         <Popover placement="bottom" isOpen={this.state.popoverOpen} target={'Popover' + i} toggle={this.toggle}>
-                                                            <PopoverHeader>Popover Title</PopoverHeader>
-                                                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                                        <Form>
+                                                            <FormGroup>
+                                                                <Input className="defaultInput" type="text" name="galons" value={this.state.galons} onChange={this.handleChange.bind(this)} placeholder="Name" />
+                                                            </FormGroup>                                                            
+                                                            <FormGroup check>
+                                                            <Label check><Input type="checkbox" />{' '}Fiscal Invoice</Label>
+                                                            </FormGroup> 
+                                                            <FormGroup check>
+                                                            <Label check><Input type="checkbox" />{' '}If</Label>
+                                                            </FormGroup>
+                                                            <FormGroup>
+                                                                <Input className="defaultInput" type="text" name="galons" value={this.state.galons} onChange={this.handleChange.bind(this)} placeholder="RNC" />
+                                                            </FormGroup> 
+                                                            <FormGroup>
+                                                                <Label for="exampleSelect">Type of business</Label>
+                                                                <Input type="select" name="select" id="exampleSelect">
+                                                                    <option>Private</option>
+                                                                    <option>Government</option>
+                                                                    <option>NGO</option>                                                                    
+                                                                </Input>
+                                                            </FormGroup>            
+                                                            </Form>
                                                         </Popover>
                                                     </td>
                                                 </tr>

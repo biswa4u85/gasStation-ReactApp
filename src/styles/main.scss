@@ -115,6 +115,24 @@ img{
 .contentBg{
     background: #fff;
     padding:20px;
+    .headerBox{
+        display: block;
+        th{
+            width: 19%;
+        }
+        th:nth-last-child{
+            width: 5%;
+        }
+    }
+    .childBox{
+        display: block;
+        td{
+            width: 19%;
+        }
+        td:nth-last-child{
+            width: 5%;
+        }
+    }
     .defaultInput{
         width: 100%;
         display: block;

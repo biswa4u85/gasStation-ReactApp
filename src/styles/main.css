@@ -6376,6 +6376,18 @@ img {
 .contentBg {
   background: #fff;
   padding: 20px; }
+  .contentBg .headerBox {
+    display: block; }
+    .contentBg .headerBox th {
+      width: 19%; }
+    .contentBg .headerBox th:nth-last-child {
+      width: 5%; }
+  .contentBg .childBox {
+    display: block; }
+    .contentBg .childBox td {
+      width: 19%; }
+    .contentBg .childBox td:nth-last-child {
+      width: 5%; }
   .contentBg .defaultInput {
     width: 100%;
     display: block;
