@@ -134,8 +134,8 @@ class Main extends Component {
                                                     <td>{item.galons}</td>
                                                     <td>{item.price}</td>
                                                     <td>{item.total}</td>
-                                                    <td><button id="Popover1" className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
-                                                        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+                                                    <td><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
+                                                        <Popover placement="bottom" isOpen={this.state.popoverOpen} target={'Popover' + i} toggle={this.toggle}>
                                                             <PopoverHeader>Popover Title</PopoverHeader>
                                                             <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
                                                         </Popover>
