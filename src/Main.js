@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { withRouter } from 'react-router-dom'
 
 import uuidV4 from 'uuid/v4'
@@ -23,7 +23,9 @@ class Main extends Component {
             others: 'aa',
             price: 'aaa',
             total: 'aa',
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -59,6 +61,12 @@ class Main extends Component {
     handleSave = async () => {
         await this.props.createNew({ variables: this.state })
         this.props.allPostsQuery.refetch()
+    }
+
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     render() {
@@ -114,49 +122,35 @@ class Main extends Component {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                </table>
-                                <div className="scrollbar2" id="style-6">
+                            </table>
+                            <div className="scrollbar2" id="style-6">
                                 <table className="table">
                                     <tbody>
                                         {
                                             this.props.allPostsQuery.listGalons.items.map((item, i) => <tr key={i}>
-                                                <td>{item.date}</td>
+                                                <td>{new Date(item.date).toLocaleDateString()}</td>
                                                 <td>{item.invoice}</td>
                                                 <td>{item.galons}</td>
                                                 <td>{item.price}</td>
                                                 <td>{item.total}</td>
-                                                <td><button className="buttBg" data-toggle="modal" onClick={this.myModal}>Print</button></td>
+                                                <td><button className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
+                                                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+                                                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+                                                        <ModalBody>
+                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                        </ModalBody>
+                                                        <ModalFooter>
+                                                            <Button color="primary">Do Something</Button>
+                                                            <Button color="secondary">Cancel</Button>
+                                                        </ModalFooter>
+                                                    </Modal>
+                                                </td>
                                             </tr>
                                             )
                                         }
                                     </tbody>
-                                    </table>
-                                </div>
-                                {/* Modal Popup */}
-                                <div class="modal fade" id="myModal">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                    
-                                        {/* <!-- Modal Header --> */}
-                                        <div class="modal-header">
-                                        <h4 class="modal-title">Modal Heading</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-                                        
-                                        {/* <!-- Modal body --> */}
-                                        <div class="modal-body">
-                                        Modal body..
-                                        </div>
-                                        
-                                        {/* <!-- Modal footer --> */}
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                        
-                                    </div>
-                                    </div>
-                                </div>
-                                {/* Modal Popup End */}
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
