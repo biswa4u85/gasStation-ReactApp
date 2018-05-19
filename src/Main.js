@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 import { withRouter } from 'react-router-dom'
 
 import uuidV4 from 'uuid/v4'
@@ -23,7 +23,7 @@ class Main extends Component {
             others: 'aa',
             price: 'aaa',
             total: 'aa',
-            modal: false
+            popoverOpen: false
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -65,7 +65,7 @@ class Main extends Component {
 
     toggle() {
         this.setState({
-            modal: !this.state.modal
+            popoverOpen: !this.state.popoverOpen
         });
     }
 
@@ -127,25 +127,20 @@ class Main extends Component {
                                 <table className="table">
                                     <tbody>
                                         {
-                                            this.props.allPostsQuery.listGalons.items.map((item, i) => <tr key={i}>
-                                                <td>{new Date(item.date).toLocaleDateString()}</td>
-                                                <td>{item.invoice}</td>
-                                                <td>{item.galons}</td>
-                                                <td>{item.price}</td>
-                                                <td>{item.total}</td>
-                                                <td><button className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
-                                                    <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                                                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                                                        <ModalBody>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                                        </ModalBody>
-                                                        <ModalFooter>
-                                                            <Button color="primary">Do Something</Button>
-                                                            <Button color="secondary">Cancel</Button>
-                                                        </ModalFooter>
-                                                    </Modal>
-                                                </td>
-                                            </tr>
+                                            this.props.allPostsQuery.listGalons.items.map((item, i) =>
+                                                <tr key={i}>
+                                                    <td>{new Date(item.date).toLocaleDateString()}</td>
+                                                    <td>{item.invoice}</td>
+                                                    <td>{item.galons}</td>
+                                                    <td>{item.price}</td>
+                                                    <td>{item.total}</td>
+                                                    <td><button id="Popover1" className="buttBg" data-toggle="modal" onClick={this.toggle}>Print</button>
+                                                        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+                                                            <PopoverHeader>Popover Title</PopoverHeader>
+                                                            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+                                                        </Popover>
+                                                    </td>
+                                                </tr>
                                             )
                                         }
                                     </tbody>
