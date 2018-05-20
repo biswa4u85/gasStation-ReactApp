@@ -1,0 +1,18 @@
+type Galons {
+  id: ID!,
+  invoice: Int!,
+  galons: String!,
+  date: String!,
+  sale: String!,
+  ccard: String!,
+  total: Int!,
+  price: String!,
+  cash: String!,
+  gcard: String!,
+  others: String!,
+  user: [String!]
+}
+
+type Query {
+  fetchGalons(id: ID!): Galons
+}
