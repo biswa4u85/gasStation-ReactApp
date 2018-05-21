@@ -6332,10 +6332,19 @@ img {
   max-width: 100%;
   height: auto; }
 
+.logoImg {
+  text-align: left; }
+  @media screen and (max-width: 414px) {
+    .logoImg {
+      text-align: center; } }
+
 .contentCotainer {
   background: linear-gradient(to right, #f96b6a, #fc588c);
-  padding: 20px 0;
+  padding: 12px 0;
   height: calc(100vh - 60px); }
+  @media screen and (max-width: 414px) {
+    .contentCotainer {
+      padding: 12px; } }
 
 .loginBg {
   width: 320px;
@@ -6350,6 +6359,9 @@ img {
     font-family: 'robotobold';
     padding: 65px 0;
     color: #fff; }
+    @media screen and (max-width: 414px) {
+      .loginBg .logo {
+        text-align: center; } }
   .loginBg .defaultButt {
     font-size: 24px;
     color: #373737;
@@ -6376,6 +6388,20 @@ img {
 .contentBg {
   background: #fff;
   padding: 20px; }
+  @media screen and (max-width: 414px) {
+    .contentBg {
+      padding: 10px; } }
+  .contentBg .alert {
+    position: relative;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 14px; }
+  .contentBg .form-group .alert {
+    display: none; }
+  .contentBg .has-error .alert {
+    display: block; }
   .contentBg .headerBox {
     display: block; }
     .contentBg .headerBox th {
@@ -6384,6 +6410,8 @@ img {
       width: 5%; }
   .contentBg .childBox {
     display: block; }
+    .contentBg .childBox .modalBoxArea {
+      position: relative; }
     .contentBg .childBox td {
       width: 19%; }
     .contentBg .childBox td:nth-last-child {
@@ -6411,8 +6439,24 @@ img {
     padding: 6px 0; }
     @media screen and (max-width: 414px) {
       .contentBg .defaultButt {
-        margin-bottom: 25px;
-        min-width: 100px; } }
+        display: none; } }
+  .contentBg .defaultButtMob {
+    background: linear-gradient(to right, #f96b6a, #fc588c);
+    display: inline-block;
+    -webkit-box-shadow: 0 0 4px #b9b9b9;
+    box-shadow: 0 0 4px #b9b9b9;
+    font-size: 14px;
+    color: #fff;
+    width: 30%;
+    border-radius: 0;
+    margin-right: 2%;
+    border: none;
+    padding: 6px 0;
+    display: none; }
+    @media screen and (max-width: 414px) {
+      .contentBg .defaultButtMob {
+        display: inline-block;
+        margin-bottom: 20px; } }
   .contentBg .totalBar {
     background: #f0f0f0;
     font-family: 'robotobold';
@@ -6552,9 +6596,15 @@ img {
   margin: 0;
   padding: 0;
   text-align: center; }
+  @media screen and (max-width: 414px) {
+    .navi {
+      text-align: left; } }
   .navi li {
     display: inline-block;
     padding: 18px 20px; }
+    @media screen and (max-width: 414px) {
+      .navi li {
+        padding: 18px; } }
     .navi li a {
       font-size: 16px;
       color: #fc588c; }
@@ -6570,3 +6620,19 @@ img {
   text-align: right; }
   .loginTxt a {
     color: #000; }
+
+.popupBox {
+  left: -52px !important;
+  padding: 10px;
+  border: solid 1px #fb5a88 !important;
+  border-radius: 0px; }
+  .popupBox .form-group {
+    margin-bottom: 5px !important; }
+  .popupBox input, .popupBox select {
+    font-size: 14px;
+    color: #545454;
+    padding: 4px 8px;
+    border-radius: 0px; }
+
+.popover .arrow {
+  display: none !important; }

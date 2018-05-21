@@ -8,10 +8,10 @@ class Nav extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-4 logo">
+          <div className="col-sm-4 logoImg">
             <img src={logo} alt="" />
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 col-9">
             <ul className="navi">
               <li>
                 <Link to="/">Home</Link>
@@ -24,7 +24,7 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4 col-3">
             <Link to="/" className="loginTxt">Login</Link>
           </div>
         </div>
