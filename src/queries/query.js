@@ -8,13 +8,9 @@ query listGalons {
       date
       invoice
       galons
-      sale
-      cash
-      ccard
-      gcard
-      others
       price
       total
+      user
     }
   }
 }

@@ -1,16 +1,11 @@
 type Galons {
   id: ID!,
-  invoice: Int!,
-  galons: String!,
   date: String!,
-  sale: String!,
-  ccard: String!,
+  invoice: Int!,
+  galons: Int!,
+  price: Int!,
   total: Int!,
-  price: String!,
-  cash: String!,
-  gcard: String!,
-  others: String!,
-  user: [String!]
+  user: String
 }
 
 type Query {

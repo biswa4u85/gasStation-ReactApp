@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Input, Label, Popover } from 'reactstrap';
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 import validator from 'validator';
+import appSyncConfig from './AppSync';
 
 import uuidV4 from 'uuid/v4'
 import { graphql, compose } from 'react-apollo'
@@ -23,18 +24,30 @@ class Main extends Component {
             ccard: { value: '', isValid: true, message: '' },
             gcard: { value: '', isValid: true, message: '' },
             others: { value: '', isValid: true, message: '' },
-            invoice: 'aa',
-            price: 'aaa',
-            total: 'aa',
+            invoice: 1,
+            price: appSyncConfig.price,
+            total: 0,
+            remaining: 0,
+            user: '{}',
             popoverOpen: {}
         }
-        // this.toggle = this.toggle.bind(this);
     }
 
     onChange = (e) => {
         var state = this.state;
         state[e.target.name].value = e.target.value;
         this.setState(state);
+        let sale = this.state.sale.value ? Number(this.state.sale.value) : 0
+        let cash = this.state.cash.value ? Number(this.state.cash.value) : 0
+        let ccard = this.state.ccard.value ? Number(this.state.ccard.value) : 0
+        let gcard = this.state.gcard.value ? Number(this.state.gcard.value) : 0
+        let others = this.state.others.value ? Number(this.state.others.value) : 0
+        setTimeout(() => {
+            if (sale > 0) {
+                this.setState({ total: cash + ccard + gcard + others });
+                this.setState({ remaining: (cash + ccard + gcard + others) - sale });
+            }
+        }, 0)
     }
 
     onSubmit = (e) => {
@@ -46,14 +59,10 @@ class Main extends Component {
                     id: this.state.id,
                     date: this.state.date,
                     invoice: this.state.invoice,
-                    galons: this.state.galons.value,
-                    sale: this.state.sale.value,
-                    cash: this.state.cash.value,
-                    ccard: this.state.ccard.value,
-                    gcard: this.state.gcard.value,
-                    others: this.state.others.value,
+                    galons: Number(this.state.galons.value),
                     price: this.state.price,
-                    total: this.state.total
+                    total: this.state.total,
+                    user: this.state.user,
                 }
             })
             this.props.allPostsQuery.refetch()
@@ -65,6 +74,13 @@ class Main extends Component {
         if (validator.isEmpty(state.galons.value)) {
             state.galons.isValid = false;
             state.galons.message = 'Not a valid value';
+            this.setState(state);
+            return false;
+        }
+
+        if (validator.isEmpty(state.sale.value)) {
+            state.sale.isValid = false;
+            state.sale.message = 'Not a valid value';
             this.setState(state);
             return false;
         }
@@ -108,7 +124,7 @@ class Main extends Component {
     }
 
     renderTable() {
-        if (this.props.allPostsQuery.listGalons.items) {
+        if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items) {
             return (
                 <div>
                     <table className="table headerBox">
@@ -178,6 +194,7 @@ class Main extends Component {
     render() {
         var { galons, sale, cash, ccard, gcard, others } = this.state;
         var galonsGroupClass = classNames('form-group', { 'has-error': !galons.isValid });
+        var saleGroupClass = classNames('form-group', { 'has-error': !sale.isValid });
 
         return (
             <div className="contentCotainer">
@@ -189,8 +206,9 @@ class Main extends Component {
                                     <Input className="defaultInput" type="text" name="galons" value={galons.value} onChange={this.onChange} autoFocus placeholder="Galons" />
                                     <span className="help-block">{galons.message}</span>
                                 </FormGroup>
-                                <FormGroup>
+                                <FormGroup className={saleGroupClass}>
                                     <Input className="defaultInput" type="text" name="sale" value={sale.value} onChange={this.onChange} placeholder="Sale" />
+                                    <span className="help-block">{sale.message}</span>
                                 </FormGroup>
                                 <Button type="submit" className="defaultButt" >Print</Button>
                                 <Button type="button" onClick={this.resetStates} className="defaultButt">Reset</Button>
@@ -214,8 +232,8 @@ class Main extends Component {
                         </div>
                         <div className="col-sm-12">
                             <div className="totalBar">
-                                <div className="totalTxt">Total : xxxxx</div>
-                                <div className="totalTxt">Remaining : xxxxx</div>
+                                <div className="totalTxt">Total : {this.state.total}</div>
+                                <div className="totalTxt">Remaining : {this.state.remaining}</div>
                             </div>
                         </div>
                     </div>

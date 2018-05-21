@@ -3,31 +3,23 @@ import gql from 'graphql-tag'
 export const CREATE_NEW = gql`
 mutation createGalons(
   $id: ID!,
-  $invoice: String!,
-  $galons: String!,
   $date: String!,
-  $sale: String!,
-  $ccard: String!,
-  $total: String!,
-  $price: String!,
-  $cash: String!,
-  $gcard: String!,
-  $others: String!,
+  $invoice: Int!,
+  $galons: Int!,
+  $price: Int!,
+  $total: Int!,
+  $user: String
 ) {
   createGalons(input: {
-  id: $id, invoice: $invoice, galons: $galons, date: $date, sale: $sale, ccard: $ccard, total: $total, price: $price, cash: $cash, gcard: $gcard, others: $others,
+  id: $id, date: $date, invoice: $invoice, galons: $galons,  price: $price, total: $total, user: $user,
 }) {
   id
+  date
   invoice
   galons
-  date
-  sale
-  ccard
-  total
   price
-  cash
-  gcard
-  others
+  total
+  user
 }
 }
 `
