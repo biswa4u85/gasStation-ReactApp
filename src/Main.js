@@ -54,18 +54,27 @@ class Main extends Component {
         e.preventDefault();
         this.resetValidationStates();
         if (this.formIsValid()) {
+            this.props.allPostsQuery.refetch()
+            let tempInvoice = []
+            this.props.allPostsQuery.listGalons.items.map((item, i) => {
+                tempInvoice.push(item.invoice)
+            })
             this.props.createNew({
                 variables: {
                     id: this.state.id,
                     date: this.state.date,
-                    invoice: this.state.invoice,
+                    invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
                     galons: Number(this.state.galons.value),
                     price: this.state.price,
                     total: this.state.total,
                     user: this.state.user,
                 }
+            }).then(() => {
+                this.props.allPostsQuery.refetch()
+                this.setState({ id: uuidV4() });
             })
-            this.props.allPostsQuery.refetch()
+            this.resetStates()
+
         }
     }
 
@@ -110,6 +119,8 @@ class Main extends Component {
                 state[key].message = '';
             }
         });
+        state.total = 0;
+        state.remaining = 0;
         this.setState(state);
     }
 
@@ -124,7 +135,7 @@ class Main extends Component {
     }
 
     renderTable() {
-        if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items) {
+        if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
             return (
                 <div>
                     <table className="table headerBox">
@@ -154,7 +165,7 @@ class Main extends Component {
                                                 <Popover placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
                                                     <Form>
                                                         <FormGroup>
-                                                            <Input className="defaultInput" type="text" name="galons" placeholder="Name" />
+                                                            <Input className="defaultInput" type="text" placeholder="Name" />
                                                         </FormGroup>
                                                         <FormGroup check>
                                                             <Label check><Input type="checkbox" />{' '}{i}Fiscal Invoice</Label>
@@ -163,7 +174,7 @@ class Main extends Component {
                                                             <Label check><Input type="checkbox" />{' '}If</Label>
                                                         </FormGroup>
                                                         <FormGroup>
-                                                            <Input className="defaultInput" type="text" name="galons" placeholder="RNC" />
+                                                            <Input className="defaultInput" type="text" placeholder="RNC" />
                                                         </FormGroup>
                                                         <FormGroup>
                                                             <Label for="exampleSelect">Type of business</Label>
