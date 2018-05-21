@@ -5,8 +5,6 @@ import classNames from 'classnames';
 import validator from 'validator';
 import appSyncConfig from './AppSync';
 import _ from 'lodash';
-
-
 import uuidV4 from 'uuid/v4'
 import { graphql, compose } from 'react-apollo'
 import { ALL_DATA_QUERY } from './queries/query'

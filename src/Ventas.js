@@ -1,22 +1,110 @@
 import React, { Component } from 'react';
 import { FormGroup, Input } from 'reactstrap';
-// import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-// import * as FontAwesome from 'react-icons/lib/fa';
-// import topLogo from './images/top-logo.png';
+import { withRouter } from 'react-router-dom'
+import classNames from 'classnames';
+import validator from 'validator';
+import appSyncConfig from './AppSync';
+// import _ from 'lodash';
+import uuidV4 from 'uuid/v4'
+import { graphql, compose } from 'react-apollo'
+import { ALL_DATA_QUERY } from './queries/query'
+import { CREATE_NEW } from './mutations/mutation'
 
 
 class Ventas extends Component {
 
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.props.allPostsQuery.refetch()
+    this.state = {
+      id: uuidV4(),
+      date: new Date(),
+      galons: { value: '', isValid: true, message: '' },
+      sale: { value: '', isValid: true, message: '' },
+      cash: { value: '', isValid: true, message: '' },
+      ccard: { value: '', isValid: true, message: '' },
+      gcard: { value: '', isValid: true, message: '' },
+      others: { value: '', isValid: true, message: '' },
+      invoice: 1,
+      price: appSyncConfig.price,
+      total: 0,
+      remaining: 0,
+      user: '{}',
+      popoverOpen: {}
+    }
   }
 
-  toggle() {
-    this.setState({ collapse: !this.state.collapse });
+  renderVentas() {
+    if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
+      let totalCash = 0
+      let totalCashCount = 0
+      let totalcCard = 0
+      let totalcCardCount = 0
+      let totalgCard = 0
+      let totalgCardCount = 0
+      let totalOthers = 0
+      let totalOthersCount = 0
+      this.props.allPostsQuery.listGalons.items.map((item, i) => {
+        if (item.cash > 0) {
+          totalCash = totalCash + item.cash
+          totalCashCount = totalCashCount + 1
+        }
+        if (item.ccard > 0) {
+          totalcCard = totalcCard + item.ccard
+          totalcCardCount = totalcCardCount + 1
+        }
+        if (item.gcard > 0) {
+          totalgCard = totalgCard + item.gcard
+          totalgCardCount = totalgCardCount + 1
+        }
+        if (item.others > 0) {
+          totalOthers = totalOthers + item.others
+          totalOthersCount = totalOthersCount + 1
+        }
+      })
+      return (
+        <div>
+          <div className="row">
+            <div className="col-sm-12">
+              <table className="table ventasTable">
+                <tbody>
+                  <tr>
+                    <td>{totalCashCount}</td>
+                    <td>cash</td>
+                    <td>{totalCash}</td>
+                  </tr>
+                  <tr>
+                    <td>{totalcCardCount}</td>
+                    <td>Credit Card</td>
+                    <td>{totalcCard}</td>
+                  </tr>
+                  <tr>
+                    <td>{totalgCardCount}</td>
+                    <td>Gift Card</td>
+                    <td>{totalgCard}</td>
+                  </tr>
+                  <tr>
+                    <td>{totalOthersCount}</td>
+                    <td>Others</td>
+                    <td>{totalOthers}</td>
+                  </tr>
+                  <tr>
+                    <td>{totalCashCount + totalcCardCount + totalgCardCount + totalOthersCount}</td>
+                    <td>Total</td>
+                    <td>{totalCash + totalcCard + totalgCard + totalOthers}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div>No Data</div>
+      )
+    }
   }
-
 
   render() {
     return (
@@ -30,39 +118,7 @@ class Ventas extends Component {
               <button className="defaultButt float-right">Coedren</button>
             </div>
           </div>
-          <div className="row">
-            <div className="col-sm-12">
-              <table className="table ventasTable">
-                <tbody>
-                  <tr>
-                    <td>11</td>
-                    <td>cash</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>22</td>
-                    <td>Credit Card</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>21</td>
-                    <td>Gift Card</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Others</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>44</td>
-                    <td>Total</td>
-                    <td>$000000</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          {this.renderVentas()}
           <div className="row calculationArea">
             <div className="col-sm-6 col-12">
               <h3>Caja</h3>
@@ -147,4 +203,14 @@ class Ventas extends Component {
   }
 }
 
-export default Ventas;
+const DetailPageWithGraphQL = compose(
+  graphql(ALL_DATA_QUERY, {
+    name: 'allPostsQuery',
+  }),
+  graphql(CREATE_NEW, {
+    name: 'createNew'
+  })
+)(Ventas)
+
+const DetailPageWithDelete = graphql(ALL_DATA_QUERY)(DetailPageWithGraphQL)
+export default withRouter(DetailPageWithDelete)
