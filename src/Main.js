@@ -161,8 +161,8 @@ class Main extends Component {
                                             <td>{item.galons}</td>
                                             <td>{item.price}</td>
                                             <td>{item.total}</td>
-                                            <td><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
-                                                <Popover placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
+                                            <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
+                                                <Popover className="popupBox" placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
                                                     <Form>
                                                         <FormGroup>
                                                             <Input className="defaultInput" type="text" placeholder="Name" />
@@ -215,11 +215,11 @@ class Main extends Component {
                             <Form onSubmit={this.onSubmit}>
                                 <FormGroup className={galonsGroupClass}>
                                     <Input className="defaultInput" type="text" name="galons" value={galons.value} onChange={this.onChange} autoFocus placeholder="Galons" />
-                                    <span className="help-block">{galons.message}</span>
+                                    <span className="alert alert-danger">{galons.message}</span>
                                 </FormGroup>
                                 <FormGroup className={saleGroupClass}>
                                     <Input className="defaultInput" type="text" name="sale" value={sale.value} onChange={this.onChange} placeholder="Sale" />
-                                    <span className="help-block">{sale.message}</span>
+                                    <span className="alert alert-danger">{sale.message}</span>
                                 </FormGroup>
                                 <Button type="submit" className="defaultButt" >Print</Button>
                                 <Button type="button" onClick={this.resetStates} className="defaultButt">Reset</Button>
@@ -240,6 +240,8 @@ class Main extends Component {
                                     <Input className="defaultInput" type="text" name="others" value={others.value} onChange={this.onChange} placeholder="" />
                                 </FormGroup>
                             </Form>
+                            <Button type="submit" className="defaultButtMob" >Print</Button>
+                            <Button type="button" onClick={this.resetStates} className="defaultButtMob">Reset</Button>
                         </div>
                         <div className="col-sm-12">
                             <div className="totalBar">
