@@ -136,6 +136,35 @@ class Main extends Component {
         this.setState({ popoverOpen: popover });
     }
 
+    onSubmitUser = (e) => {
+        e.preventDefault();
+        this.resetValidationStates();
+        this.setState({ popoverOpen: '' });
+        // if (this.formIsValid()) {
+        //     this.props.allPostsQuery.refetch()
+        //     let tempInvoice = []
+        //     this.props.allPostsQuery.listGalons.items.map((item, i) => {
+        //         tempInvoice.push(item.invoice)
+        //     })
+        //     this.props.createNew({
+        //         variables: {
+        //             id: this.state.id,
+        //             date: this.state.date,
+        //             invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
+        //             galons: Number(this.state.galons.value),
+        //             price: this.state.price,
+        //             total: this.state.total,
+        //             user: this.state.user,
+        //         }
+        //     }).then(() => {
+        //         this.props.allPostsQuery.refetch()
+        //         this.setState({ id: uuidV4() });
+        //     })
+        //     this.resetStates()
+
+        // }
+    }
+
     renderTable() {
         if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
             let sortByData = _.sortBy(this.props.allPostsQuery.listGalons.items, 'invoice')
@@ -166,7 +195,7 @@ class Main extends Component {
                                             <td>{item.total}</td>
                                             <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
                                                 <Popover className="popupBox" placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
-                                                    <Form>
+                                                    <Form onSubmit={this.onSubmitUser}>
                                                         <FormGroup>
                                                             <Input className="defaultInput" type="text" placeholder="Name" />
                                                         </FormGroup>
