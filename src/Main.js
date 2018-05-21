@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 import validator from 'validator';
 import appSyncConfig from './AppSync';
+import _ from 'lodash';
+
 
 import uuidV4 from 'uuid/v4'
 import { graphql, compose } from 'react-apollo'
@@ -136,6 +138,7 @@ class Main extends Component {
 
     renderTable() {
         if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
+            let sortByData = _.sortBy(this.props.allPostsQuery.listGalons.items, 'invoice')
             return (
                 <div>
                     <table className="table headerBox">
@@ -154,7 +157,7 @@ class Main extends Component {
                         <table className="table childBox">
                             <tbody>
                                 {
-                                    this.props.allPostsQuery.listGalons.items.map((item, i) =>
+                                    sortByData.reverse().map((item, i) =>
                                         <tr key={i}>
                                             <td>{new Date(item.date).toLocaleDateString()}</td>
                                             <td>{item.invoice}</td>
@@ -184,6 +187,7 @@ class Main extends Component {
                                                                 <option>NGO</option>
                                                             </Input>
                                                         </FormGroup>
+                                                        <Button type="submit" className="defaultButtMob">Update</Button>
                                                     </Form>
                                                 </Popover>
                                             </td>
