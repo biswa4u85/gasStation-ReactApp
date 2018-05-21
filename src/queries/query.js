@@ -8,6 +8,10 @@ query listGalons {
       date
       invoice
       galons
+      cash
+      ccard
+      gcard
+      others
       price
       total
       user

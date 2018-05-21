@@ -4,6 +4,10 @@ type Galons {
   invoice: Int!,
   galons: Int!,
   price: Int!,
+  cash: Int!,
+  ccard: Int!,
+  gcard: Int!,
+  others: Int!,
   total: Int!,
   user: String
 }

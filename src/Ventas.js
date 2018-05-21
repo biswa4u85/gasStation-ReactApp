@@ -35,27 +35,27 @@ class Ventas extends Component {
               <table className="table ventasTable">
                 <tbody>
                   <tr>
-                    <td>xxxxxx</td>
-                    <td>Effectivo</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>xxxxxx</td>
-                    <td>Effectivo</td>
+                    <td>11</td>
+                    <td>cash</td>
                     <td>xxxxxx</td>
                   </tr>
                   <tr>
-                    <td>xxxxxx</td>
-                    <td>Effectivo</td>
-                    <td>xxxxxx</td>
-                  </tr>
-                  <tr>
-                    <td>xxxxxx</td>
-                    <td>Effectivo</td>
+                    <td>22</td>
+                    <td>Credit Card</td>
                     <td>xxxxxx</td>
                   </tr>
                   <tr>
-                    <td></td>
+                    <td>21</td>
+                    <td>Gift Card</td>
+                    <td>xxxxxx</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Others</td>
+                    <td>xxxxxx</td>
+                  </tr>
+                  <tr>
+                    <td>44</td>
                     <td>Total</td>
                     <td>$000000</td>
                   </tr>
@@ -113,7 +113,7 @@ class Ventas extends Component {
                     <span className="compliantTxt">1</span><span className="compliantAmt">xxx</span>  <Input className="smlInput" type="number" />  <span className="compliantRes">YYY</span>
                   </FormGroup>
                 </li>
-                <li> 
+                <li>
                   <FormGroup>
                     <span className="compliantTxt">1</span><span className="compliantAmt">xxx</span>  <Input className="smlInput" type="number" />  <span className="compliantRes">YYY</span>
                   </FormGroup>

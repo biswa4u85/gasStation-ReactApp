@@ -67,6 +67,10 @@ class Main extends Component {
                     date: this.state.date,
                     invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
                     galons: Number(this.state.galons.value),
+                    cash: Number(this.state.cash.value),
+                    ccard: Number(this.state.ccard.value),
+                    gcard: Number(this.state.gcard.value),
+                    others: Number(this.state.others.value),
                     price: this.state.price,
                     total: this.state.total,
                     user: this.state.user,
@@ -189,7 +193,7 @@ class Main extends Component {
                                     sortByData.reverse().map((item, i) =>
                                         <tr key={i}>
                                             <td>{new Date(item.date).toLocaleDateString()}</td>
-                                            <td>{item.invoice}</td>
+                                            <td>#{item.invoice}</td>
                                             <td>{item.galons}</td>
                                             <td>{item.price}</td>
                                             <td>{item.total}</td>
