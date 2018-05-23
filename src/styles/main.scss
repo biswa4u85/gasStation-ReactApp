@@ -74,9 +74,20 @@ img{
 .contentCotainer{
     background: linear-gradient(to right, #f96b6a , #fc588c);
     padding:12px 0;
+    position: relative;
     height: calc(100vh - 60px);
     @media screen and (max-width:414px) {
         padding:12px;
+    }
+    .overLapCotainer{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background:#ccc;
+        opacity: 0.6; 
+        z-index: 2;
     }
 }
 
@@ -160,7 +171,8 @@ img{
     .childBox{
         display: block;
         .modalBoxArea{
-            position: relative;            
+            position: relative;    
+            z-index: 3;       
         }
         td{
             width: 19%;

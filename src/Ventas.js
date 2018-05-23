@@ -37,29 +37,29 @@ class Ventas extends Component {
   renderVentas() {
     if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
       let totalCash = 0
-      let totalCashCount = 0
+      let totalCashGalons = 0
       let totalcCard = 0
-      let totalcCardCount = 0
+      let totalcCardGalons = 0
       let totalgCard = 0
-      let totalgCardCount = 0
+      let totalgCardGalons = 0
       let totalOthers = 0
-      let totalOthersCount = 0
+      let totalOthersGalons = 0
       this.props.allPostsQuery.listGalons.items.map((item, i) => {
         if (item.cash > 0) {
           totalCash = totalCash + item.cash
-          totalCashCount = totalCashCount + 1
+          totalCashGalons = totalCashGalons + item.galons
         }
         if (item.ccard > 0) {
           totalcCard = totalcCard + item.ccard
-          totalcCardCount = totalcCardCount + 1
+          totalcCardGalons = totalcCardGalons + item.galons
         }
         if (item.gcard > 0) {
           totalgCard = totalgCard + item.gcard
-          totalgCardCount = totalgCardCount + 1
+          totalgCardGalons = totalgCardGalons + item.galons
         }
         if (item.others > 0) {
           totalOthers = totalOthers + item.others
-          totalOthersCount = totalOthersCount + 1
+          totalOthersGalons = totalOthersGalons + item.galons
         }
       })
       return (
@@ -69,27 +69,27 @@ class Ventas extends Component {
               <table className="table ventasTable">
                 <tbody>
                   <tr>
-                    <td>{totalCashCount}</td>
+                    <td>{totalCashGalons}</td>
                     <td>cash</td>
                     <td>{totalCash}</td>
                   </tr>
                   <tr>
-                    <td>{totalcCardCount}</td>
+                    <td>{totalcCardGalons}</td>
                     <td>Credit Card</td>
                     <td>{totalcCard}</td>
                   </tr>
                   <tr>
-                    <td>{totalgCardCount}</td>
+                    <td>{totalgCardGalons}</td>
                     <td>Gift Card</td>
                     <td>{totalgCard}</td>
                   </tr>
                   <tr>
-                    <td>{totalOthersCount}</td>
+                    <td>{totalOthersGalons}</td>
                     <td>Others</td>
                     <td>{totalOthers}</td>
                   </tr>
                   <tr>
-                    <td>{totalCashCount + totalcCardCount + totalgCardCount + totalOthersCount}</td>
+                    <td>{totalCashGalons + totalcCardGalons + totalgCardGalons + totalOthersGalons}</td>
                     <td>Total</td>
                     <td>{totalCash + totalcCard + totalgCard + totalOthers}</td>
                   </tr>
@@ -112,10 +112,7 @@ class Ventas extends Component {
         <div className="container contentBg">
           <div className="row">
             <div className="col-sm-6 col-6">
-              <h2>Ventas</h2>
-            </div>
-            <div className="col-sm-6 col-6">
-              <button className="defaultButt float-right">Coedren</button>
+              <h2>Cuadre</h2>
             </div>
           </div>
           {this.renderVentas()}

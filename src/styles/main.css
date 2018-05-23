@@ -6341,10 +6341,20 @@ img {
 .contentCotainer {
   background: linear-gradient(to right, #f96b6a, #fc588c);
   padding: 12px 0;
+  position: relative;
   height: calc(100vh - 60px); }
   @media screen and (max-width: 414px) {
     .contentCotainer {
       padding: 12px; } }
+  .contentCotainer .overLapCotainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    opacity: 0.6;
+    z-index: 2; }
 
 .loginBg {
   width: 320px;
@@ -6411,7 +6421,8 @@ img {
   .contentBg .childBox {
     display: block; }
     .contentBg .childBox .modalBoxArea {
-      position: relative; }
+      position: relative;
+      z-index: 3; }
     .contentBg .childBox td {
       width: 19%; }
     .contentBg .childBox td:nth-last-child {

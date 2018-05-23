@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input, Label, Popover } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Popover, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { withRouter } from 'react-router-dom'
 import classNames from 'classnames';
 import validator from 'validator';
-import appSyncConfig from './AppSync';
 import _ from 'lodash';
 import uuidV4 from 'uuid/v4'
 import { graphql, compose } from 'react-apollo'
@@ -15,6 +14,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.props.allPostsQuery.refetch()
+        this.printData = {}
         this.state = {
             id: uuidV4(),
             date: new Date(),
@@ -25,17 +25,26 @@ class Main extends Component {
             gcard: { value: '', isValid: true, message: '' },
             others: { value: '', isValid: true, message: '' },
             invoice: 1,
-            price: appSyncConfig.price,
+            price: localStorage.getItem('galonsPrice') ? localStorage.getItem('galonsPrice') : 0,
             total: 0,
             remaining: 0,
             user: '{}',
-            popoverOpen: {}
+            popoverOpen: {},
+            modal: false
         }
+        this.toggleModel = this.toggleModel.bind(this);
+        this.toggleModelCancel = this.toggleModelCancel.bind(this);
     }
 
     onChange = (e) => {
         var state = this.state;
         state[e.target.name].value = e.target.value;
+        if (e.target.name === 'sale') {
+            state['galons'].value = this.state.sale.value / this.state.price;
+        }
+        if (e.target.name === 'galons') {
+            state['sale'].value = this.state.galons.value * this.state.price;
+        }
         this.setState(state);
         let sale = this.state.sale.value ? Number(this.state.sale.value) : 0
         let cash = this.state.cash.value ? Number(this.state.cash.value) : 0
@@ -59,39 +68,39 @@ class Main extends Component {
             this.props.allPostsQuery.listGalons.items.map((item, i) => {
                 tempInvoice.push(item.invoice)
             })
+            var printData = {
+                id: this.state.id,
+                date: this.state.date,
+                invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
+                galons: Number(this.state.galons.value),
+                cash: Number(this.state.cash.value),
+                ccard: Number(this.state.ccard.value),
+                gcard: Number(this.state.gcard.value),
+                others: Number(this.state.others.value),
+                price: this.state.price,
+                total: this.state.total,
+                user: this.state.user,
+            }
+            this.printData = printData
             this.props.createNew({
-                variables: {
-                    id: this.state.id,
-                    date: this.state.date,
-                    invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
-                    galons: Number(this.state.galons.value),
-                    cash: Number(this.state.cash.value),
-                    ccard: Number(this.state.ccard.value),
-                    gcard: Number(this.state.gcard.value),
-                    others: Number(this.state.others.value),
-                    price: this.state.price,
-                    total: this.state.total,
-                    user: this.state.user,
-                }
+                variables: printData
             }).then(() => {
                 this.props.allPostsQuery.refetch()
                 this.setState({ id: uuidV4() });
             })
-            this.resetStates()
-
         }
     }
 
     formIsValid = () => {
         var state = this.state;
-        if (validator.isEmpty(state.galons.value)) {
+        if (validator.isEmpty(String(state.galons.value))) {
             state.galons.isValid = false;
             state.galons.message = 'Not a valid value';
             this.setState(state);
             return false;
         }
 
-        if (validator.isEmpty(state.sale.value)) {
+        if (validator.isEmpty(String(state.sale.value))) {
             state.sale.isValid = false;
             state.sale.message = 'Not a valid value';
             this.setState(state);
@@ -136,6 +145,21 @@ class Main extends Component {
         }
         popover[id] = true
         this.setState({ popoverOpen: popover });
+    }
+
+    toggleModel() {
+        if (this.formIsValid()) {
+            this.setState({
+                modal: !this.state.modal
+            });
+        }
+    }
+
+    toggleModelCancel() {
+        this.resetStates()
+        this.setState({
+            modal: false
+        });
     }
 
     onSubmitUser = (e) => {
@@ -202,10 +226,7 @@ class Main extends Component {
                                                             <Input className="defaultInput" type="text" placeholder="Name" />
                                                         </FormGroup>
                                                         <FormGroup check>
-                                                            <Label check><Input type="checkbox" />{' '}{i}Fiscal Invoice</Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                            <Label check><Input type="checkbox" />{' '}If</Label>
+                                                            <Label check><Input type="checkbox" />{' '}Fiscal Invoice</Label>
                                                         </FormGroup>
                                                         <FormGroup>
                                                             <Input className="defaultInput" type="text" placeholder="RNC" />
@@ -241,41 +262,41 @@ class Main extends Component {
         var { galons, sale, cash, ccard, gcard, others } = this.state;
         var galonsGroupClass = classNames('form-group', { 'has-error': !galons.isValid });
         var saleGroupClass = classNames('form-group', { 'has-error': !sale.isValid });
-
         return (
             <div className="contentCotainer">
+                <div className={(Object.keys(this.state.popoverOpen).length === 0) ? 'none' : 'overLapCotainer'} onClick={() => { this.setState({ popoverOpen: '' }) }}></div>
                 <div className="container contentBg">
                     <div className="row">
                         <div className="col-sm-6 col-12">
                             <Form onSubmit={this.onSubmit}>
                                 <FormGroup className={galonsGroupClass}>
-                                    <Input className="defaultInput" type="text" name="galons" value={galons.value} onChange={this.onChange} autoFocus placeholder="Galons" />
+                                    <Input className="defaultInput" type="number" name="galons" value={galons.value} onChange={this.onChange} autoFocus placeholder="Galons" />
                                     <span className="alert alert-danger">{galons.message}</span>
                                 </FormGroup>
                                 <FormGroup className={saleGroupClass}>
-                                    <Input className="defaultInput" type="text" name="sale" value={sale.value} onChange={this.onChange} placeholder="Sale" />
+                                    <Input className="defaultInput" type="number" name="sale" value={sale.value} onChange={this.onChange} placeholder="Sale" />
                                     <span className="alert alert-danger">{sale.message}</span>
                                 </FormGroup>
-                                <Button type="submit" className="defaultButt" >Print</Button>
+                                <Button type="submit" onClick={this.toggleModel} className="defaultButt" >Print</Button>
                                 <Button type="button" onClick={this.resetStates} className="defaultButt">Reset</Button>
                             </Form>
                         </div>
                         <div className="col-sm-6 col-12">
                             <Form>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="cash" value={cash.value} onChange={this.onChange} placeholder="Cash" />
+                                    <Input className="defaultInput" type="number" name="cash" value={cash.value} onChange={this.onChange} placeholder="Cash" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="ccard" value={ccard.value} onChange={this.onChange} placeholder="Credit Card" />
+                                    <Input className="defaultInput" type="number" name="ccard" value={ccard.value} onChange={this.onChange} placeholder="Credit Card" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="gcard" value={gcard.value} onChange={this.onChange} placeholder="Gift Card" />
+                                    <Input className="defaultInput" type="number" name="gcard" value={gcard.value} onChange={this.onChange} placeholder="Gift Card" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="text" name="others" value={others.value} onChange={this.onChange} placeholder="" />
+                                    <Input className="defaultInput" type="number" name="others" value={others.value} onChange={this.onChange} placeholder="" />
                                 </FormGroup>
                             </Form>
-                            <Button type="submit" className="defaultButtMob" >Print</Button>
+                            <Button type="submit" onClick={this.toggleModel} className="defaultButtMob" >Print</Button>
                             <Button type="button" onClick={this.resetStates} className="defaultButtMob">Reset</Button>
                         </div>
                         <div className="col-sm-12">
@@ -283,6 +304,16 @@ class Main extends Component {
                                 <div className="totalTxt">Total : {this.state.total}</div>
                                 <div className="totalTxt">Remaining : {this.state.remaining}</div>
                             </div>
+                            <Modal isOpen={this.state.modal} toggle={this.toggleModelCancel} className={this.props.className}>
+                                <ModalHeader toggle={this.toggleModelCancel}>Modal title</ModalHeader>
+                                <ModalBody>
+                                    {this.printData.galons}
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button color="primary" onClick={this.toggleModelCancel}>Do Something</Button>{' '}
+                                    <Button color="secondary" onClick={this.toggleModelCancel}>Cancel</Button>
+                                </ModalFooter>
+                            </Modal>
                         </div>
                     </div>
                     <div className="row">
