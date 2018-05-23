@@ -239,7 +239,7 @@ class Main extends Component {
                                                                 <option>NGO</option>
                                                             </Input>
                                                         </FormGroup>
-                                                        <Button type="submit" className="defaultButtMob">Update</Button>
+                                                        <Button type="submit" className="defaultButtMob updateButt">Update</Button>
                                                     </Form>
                                                 </Popover>
                                             </td>
@@ -293,7 +293,7 @@ class Main extends Component {
                                     <Input className="defaultInput" type="number" name="gcard" value={gcard.value} onChange={this.onChange} placeholder="Gift Card" />
                                 </FormGroup>
                                 <FormGroup>
-                                    <Input className="defaultInput" type="number" name="others" value={others.value} onChange={this.onChange} placeholder="" />
+                                    <Input className="defaultInput" type="number" name="others" value={others.value} onChange={this.onChange} placeholder="Others" />
                                 </FormGroup>
                             </Form>
                             <Button type="submit" onClick={this.toggleModel} className="defaultButtMob" >Print</Button>
@@ -305,13 +305,22 @@ class Main extends Component {
                                 <div className="totalTxt">Remaining : {this.state.remaining}</div>
                             </div>
                             <Modal isOpen={this.state.modal} toggle={this.toggleModelCancel} className={this.props.className}>
-                                <ModalHeader toggle={this.toggleModelCancel}>Modal title</ModalHeader>
+                                <ModalHeader toggle={this.toggleModelCancel}>Print Reciept</ModalHeader>
                                 <ModalBody>
-                                    {this.printData.galons}
+                                    <ul className="printList">
+                                    <li><span>Galons:</span> {this.printData.galons}</li>
+                                    <li><span>Sale:</span> {this.printData.sale}</li>
+                                    <li><span>Cash:</span> {this.printData.cash}</li>
+                                    <li><span>Credit Card:</span> {this.printData.ccard}</li>
+                                    <li><span>Gift Card:</span> {this.printData.gcard}</li>
+                                    <li><span>Others:</span> {this.printData.others}</li>
+                                    <li><span>Total:</span> {this.printData.total}</li>
+                                    <li><span>Remaining:</span> {this.printData.remaining}</li>
+                                    </ul>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="primary" onClick={this.toggleModelCancel}>Do Something</Button>{' '}
-                                    <Button color="secondary" onClick={this.toggleModelCancel}>Cancel</Button>
+                                    <Button color="primary printBoxButt" onClick={this.toggleModelCancel}>Do Something</Button>{' '}
+                                    <Button color="secondary printBoxButt" onClick={this.toggleModelCancel}>Cancel</Button>
                                 </ModalFooter>
                             </Modal>
                         </div>

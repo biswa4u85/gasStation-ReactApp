@@ -6644,6 +6644,49 @@ img {
     color: #545454;
     padding: 4px 8px;
     border-radius: 0px; }
+  .popupBox .updateButt {
+    background: linear-gradient(to right, #f96b6a, #fc588c);
+    display: inline-block;
+    -webkit-box-shadow: 0 0 4px #b9b9b9;
+    box-shadow: 0 0 4px #b9b9b9;
+    font-size: 14px;
+    color: #fff;
+    width: 100%;
+    border-radius: 0;
+    margin-right: 2%;
+    border: none;
+    padding: 6px 0; }
 
 .popover .arrow {
   display: none !important; }
+
+.printList {
+  display: block;
+  margin: 0;
+  padding: 0; }
+  .printList li {
+    display: block;
+    background: #ffe7ed;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    list-style: none;
+    color: #ff0043; }
+    .printList li span {
+      color: #000;
+      width: 80%;
+      display: inline-block; }
+
+.printBoxButt {
+  background: linear-gradient(to right, #f96b6a, #fc588c);
+  display: inline-block;
+  -webkit-box-shadow: 0 0 4px #b9b9b9;
+  box-shadow: 0 0 4px #b9b9b9;
+  font-size: 14px;
+  color: #fff;
+  width: 100%;
+  border-radius: 0;
+  margin-right: 2%;
+  border: none;
+  padding: 6px 0; }
