@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from './images/logo.png'
-import appSyncConfig from './AppSync';
 
 class Nav extends Component {
   render() {
@@ -20,7 +19,7 @@ class Nav extends Component {
                 <Link to="/ventas">Ventas</Link>
               </li>
               <li>
-                Price : <strong>{appSyncConfig.price}</strong>
+                Price : <strong>{localStorage.getItem('galonsPrice') ? localStorage.getItem('galonsPrice') : 0}</strong>
               </li>
             </ul>
           </div>
