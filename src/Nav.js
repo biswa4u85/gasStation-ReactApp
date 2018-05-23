@@ -19,15 +19,13 @@ class Nav extends Component {
                 <Link to="/ventas">Ventas</Link>
               </li>
               <li>
-                <Link to="/admin">Admin</Link>
-              </li>
-              <li>
                 Price : <strong>{localStorage.getItem('galonsPrice') ? localStorage.getItem('galonsPrice') : 0}</strong>
               </li>
             </ul>
           </div>
           <div className="col-sm-4 col-3">
             <Link to="/" className="loginTxt">Login</Link>
+            <Link to="/admin">Admin</Link>
           </div>
         </div>
       </div>
