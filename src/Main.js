@@ -150,7 +150,11 @@ class Main extends Component {
         this.setState(state);
     }
 
-    toggle = (id) => {
+    toggle = (id, item) => {
+        this.setState({ uName: { value: JSON.parse(item.user).uName, isValid: true, message: '' } })
+        this.setState({ uInvoice: JSON.parse(item.user).uInvoice })
+        this.setState({ uRnc: { value: JSON.parse(item.user).uRnc, isValid: true, message: '' } })
+        this.setState({ uBusiness: { value: JSON.parse(item.user).uBusiness, isValid: true, message: '' } })
         var popover = {}
         if (Object.keys(this.state.popoverOpen).length !== 0 && Object.keys(this.state.popoverOpen)[0] === id) {
             this.setState({ popoverOpen: popover });
@@ -226,7 +230,7 @@ class Main extends Component {
                                             <td>{item.galons}</td>
                                             <td>{item.price}</td>
                                             <td>{item.total}</td>
-                                            <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
+                                            <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i, item) }}>Print</button>
                                                 <Popover className="popupBox" placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
                                                     <Form onSubmit={() => this.onSubmitUser(item)}>
                                                         <FormGroup>
@@ -240,6 +244,7 @@ class Main extends Component {
                                                         </FormGroup> : ''}
                                                         {this.state.uInvoice ? <FormGroup>
                                                             <Label for="exampleSelect">Type of business</Label>
+                                                            {/* {uBusiness.value} */}
                                                             <Input type="select" name="uBusiness" onChange={this.onChange} id="exampleSelect">
                                                                 <option>Select One</option>
                                                                 <option>Private</option>
