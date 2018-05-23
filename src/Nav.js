@@ -24,8 +24,10 @@ class Nav extends Component {
             </ul>
           </div>
           <div className="col-sm-4 col-3">
-            <Link to="/" className="loginTxt">Login</Link>
-            <Link to="/admin">Admin</Link>
+            <div className="headerRightLink">
+              <Link to="/admin" className="loginTxt">Admin</Link>
+              <Link to="/" className="loginTxt">Login</Link>
+            </div>
           </div>
         </div>
       </div>

@@ -340,7 +340,7 @@ class Main extends Component {
                                     </ul>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="primary printBoxButt" onClick={() => this.printDiv('printableArea')}>Do Something</Button>{' '}
+                                    <Button color="primary printBoxButt" onClick={() => this.printDiv('printableArea')}>Print</Button>{' '}
                                     <Button color="secondary printBoxButt" onClick={this.toggleModelCancel}>Cancel</Button>
                                 </ModalFooter>
 
