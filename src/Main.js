@@ -7,7 +7,7 @@ import _ from 'lodash';
 import uuidV4 from 'uuid/v4'
 import { graphql, compose } from 'react-apollo'
 import { ALL_DATA_QUERY } from './queries/query'
-import { CREATE_NEW } from './mutations/mutation'
+import { CREATE_NEW, UPDATE_NEW } from './mutations/mutation'
 
 class Main extends Component {
 
@@ -32,7 +32,7 @@ class Main extends Component {
             uInvoice: true,
             uRnc: { value: '', isValid: true, message: '' },
             uBusiness: { value: '', isValid: true, message: '' },
-            user: JSON.stringify({ 'uName': 'biswa', 'uInvoice': true, 'uRnc': 'rnctest', 'uBusiness': 'binesss' }),
+            user: JSON.stringify({ 'uName': '', 'uInvoice': true, 'uRnc': '', 'uBusiness': '' }),
             popoverOpen: {},
             modal: false
         }
@@ -122,20 +122,6 @@ class Main extends Component {
         return true;
     }
 
-    formIsValidUser = () => {
-        var state = this.state;
-        if (validator.isEmpty(String(state.uName.value))) {
-            state.uName.isValid = false;
-            state.uName.message = 'Not a valid value';
-            this.setState(state);
-            return false;
-        }
-
-        //additional validation checks here...
-
-        return true;
-    }
-
     resetValidationStates = () => {
         var state = this.state;
         Object.keys(state).map(key => {
@@ -186,35 +172,32 @@ class Main extends Component {
         });
     }
 
-    onSubmitUser = (e) => {
-        e.preventDefault();
-        this.resetValidationStates();
+    onSubmitUser = (item) => {
         this.setState({ popoverOpen: '' });
-        if (this.formIsValidUser()) {
-            console.log(this.state)
-            // this.props.createNew({
-            //     variables: {
-            //         id: this.state.id,
-            //         date: this.state.date,
-            //         invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
-            //         galons: Number(this.state.galons.value),
-            //         price: this.state.price,
-            //         total: this.state.total,
-            //         user: this.state.user,
-            //     }
-            // }).then(() => {
-            //     this.props.allPostsQuery.refetch()
-            //     this.setState({ id: uuidV4() });
-            // })
-            // this.resetStates()
+        var tempData = {
+            id: item.id,
+            date: item.date,
+            invoice: item.invoice,
+            galons: item.galons,
+            cash: item.cash,
+            ccard: item.ccard,
+            gcard: item.gcard,
+            others: item.others,
+            price: item.price,
+            total: item.total,
+            user: JSON.stringify({ 'uName': this.state.uName.value, 'uInvoice': this.state.uInvoice, 'uRnc': this.state.uRnc.value, 'uBusiness': this.state.uBusiness.value })
         }
+        this.props.updateNew({
+            variables: tempData
+        }).then(() => {
+            this.props.allPostsQuery.refetch()
+        })
     }
 
     renderTable() {
         if (this.props.allPostsQuery.listGalons && this.props.allPostsQuery.listGalons.items.length !== 0) {
             let sortByData = _.sortBy(this.props.allPostsQuery.listGalons.items, 'invoice')
             var { uName, uInvoice, uRnc, uBusiness } = this.state;
-            var uNameGroupClass = classNames('form-group', { 'has-error': !uName.isValid });
             return (
                 <div>
                     <table className="table headerBox">
@@ -242,10 +225,9 @@ class Main extends Component {
                                             <td>{item.total}</td>
                                             <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
                                                 <Popover className="popupBox" placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
-                                                    <Form onSubmit={this.onSubmitUser}>
-                                                        <FormGroup className={uNameGroupClass}>
+                                                    <Form onSubmit={() => this.onSubmitUser(item)}>
+                                                        <FormGroup>
                                                             <Input className="defaultInput" type="text" name="uName" value={uName.value} onChange={this.onChange} autoFocus placeholder={JSON.parse(item.user).uName ? JSON.parse(item.user).uName : 'Name'} />
-                                                            <span className="alert alert-danger">{uName.message}</span>
                                                         </FormGroup>
                                                         <FormGroup check>
                                                             <Label><Input type="checkbox" defaultChecked="uInvoice" onChange={this.handleChangeChk} />{' '}Fiscal Invoice</Label>
@@ -365,6 +347,9 @@ const DetailPageWithGraphQL = compose(
     }),
     graphql(CREATE_NEW, {
         name: 'createNew'
+    }),
+    graphql(UPDATE_NEW, {
+        name: 'updateNew'
     })
 )(Main)
 
