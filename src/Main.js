@@ -9,6 +9,7 @@ import { graphql, compose } from 'react-apollo'
 import { ALL_DATA_QUERY } from './queries/query'
 import { CREATE_NEW, UPDATE_NEW } from './mutations/mutation'
 
+
 class Main extends Component {
 
     constructor(props) {
@@ -83,11 +84,13 @@ class Main extends Component {
                 date: this.state.date,
                 invoice: tempInvoice.length !== 0 ? (Math.max(...tempInvoice) + 1) : 1,
                 galons: Number(this.state.galons.value),
+                sale: Number(this.state.sale.value),
                 cash: Number(this.state.cash.value),
                 ccard: Number(this.state.ccard.value),
                 gcard: Number(this.state.gcard.value),
                 others: Number(this.state.others.value),
                 price: this.state.price,
+                remaining: this.state.remaining,
                 total: this.state.total,
                 user: this.state.user,
             }
@@ -263,6 +266,14 @@ class Main extends Component {
         }
     }
 
+    printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.location.reload();
+        window.print();
+    }
+
     render() {
         var { galons, sale, cash, ccard, gcard, others } = this.state;
         var galonsGroupClass = classNames('form-group', { 'has-error': !galons.isValid });
@@ -309,7 +320,7 @@ class Main extends Component {
                                 <div className="totalTxt">Total : {this.state.total}</div>
                                 <div className="totalTxt">Remaining : {this.state.remaining}</div>
                             </div>
-                            <Modal isOpen={this.state.modal} toggle={this.toggleModelCancel} className={this.props.className}>
+                            <Modal id="printableArea" isOpen={this.state.modal} toggle={this.toggleModelCancel} className={this.props.className}>
                                 <ModalHeader toggle={this.toggleModelCancel}>Print Reciept</ModalHeader>
                                 <ModalBody>
                                     <ul className="printList">
@@ -324,10 +335,12 @@ class Main extends Component {
                                     </ul>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="primary printBoxButt" onClick={this.toggleModelCancel}>Do Something</Button>{' '}
+                                    <Button color="primary printBoxButt" onClick={() => this.printDiv('printableArea')}>Do Something</Button>{' '}
                                     <Button color="secondary printBoxButt" onClick={this.toggleModelCancel}>Cancel</Button>
                                 </ModalFooter>
+
                             </Modal>
+
                         </div>
                     </div>
                     <div className="row">
