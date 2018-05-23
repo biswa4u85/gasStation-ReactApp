@@ -242,7 +242,6 @@ class Main extends Component {
                                             <td>{item.total}</td>
                                             <td className="modalBoxArea"><button id={'Popover' + i} className="buttBg" data-toggle="modal" onClick={() => { this.toggle(i) }}>Print</button>
                                                 <Popover className="popupBox" placement="bottom" isOpen={this.state.popoverOpen[i]} target={'Popover' + i}>
-                                                    {item.user}
                                                     <Form onSubmit={this.onSubmitUser}>
                                                         <FormGroup className={uNameGroupClass}>
                                                             <Input className="defaultInput" type="text" name="uName" value={uName.value} onChange={this.onChange} autoFocus placeholder={JSON.parse(item.user).uName ? JSON.parse(item.user).uName : 'Name'} />
@@ -262,13 +261,8 @@ class Main extends Component {
                                                                 <option>Government</option>
                                                                 <option>NGO</option>
                                                             </Input>
-<<<<<<< HEAD
                                                         </FormGroup> : ''}
-                                                        <Button type="submit" className="defaultButtMob">Update</Button>
-=======
-                                                        </FormGroup>
                                                         <Button type="submit" className="defaultButtMob updateButt">Update</Button>
->>>>>>> 2dc1a8580cd2e25947c4c9f429f4c677567a350b
                                                     </Form>
                                                 </Popover>
                                             </td>
@@ -337,14 +331,14 @@ class Main extends Component {
                                 <ModalHeader toggle={this.toggleModelCancel}>Print Reciept</ModalHeader>
                                 <ModalBody>
                                     <ul className="printList">
-                                    <li><span>Galons:</span> {this.printData.galons}</li>
-                                    <li><span>Sale:</span> {this.printData.sale}</li>
-                                    <li><span>Cash:</span> {this.printData.cash}</li>
-                                    <li><span>Credit Card:</span> {this.printData.ccard}</li>
-                                    <li><span>Gift Card:</span> {this.printData.gcard}</li>
-                                    <li><span>Others:</span> {this.printData.others}</li>
-                                    <li><span>Total:</span> {this.printData.total}</li>
-                                    <li><span>Remaining:</span> {this.printData.remaining}</li>
+                                        <li><span>Galons:</span> {this.printData.galons}</li>
+                                        <li><span>Sale:</span> {this.printData.sale}</li>
+                                        <li><span>Cash:</span> {this.printData.cash}</li>
+                                        <li><span>Credit Card:</span> {this.printData.ccard}</li>
+                                        <li><span>Gift Card:</span> {this.printData.gcard}</li>
+                                        <li><span>Others:</span> {this.printData.others}</li>
+                                        <li><span>Total:</span> {this.printData.total}</li>
+                                        <li><span>Remaining:</span> {this.printData.remaining}</li>
                                     </ul>
                                 </ModalBody>
                                 <ModalFooter>
