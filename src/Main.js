@@ -45,7 +45,13 @@ class Main extends Component {
         var state = this.state;
         state[e.target.name].value = e.target.value;
         if (e.target.name === 'sale') {
-            state['galons'].value = this.state.sale.value / this.state.price;
+            let tempVal = this.state.sale.value / this.state.price
+            if (String(tempVal).indexOf(".") == -1) {
+                tempVal = tempVal
+            } else {
+                tempVal = tempVal.toFixed(3)
+            }
+            state['galons'].value = tempVal;
         }
         if (e.target.name === 'galons') {
             state['sale'].value = this.state.galons.value * this.state.price;
