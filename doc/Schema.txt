@@ -15,3 +15,16 @@ type Galons {
 type Query {
   fetchGalons(id: ID!): Galons
 }
+
+type Settings {
+  id: ID!,
+  price: Int!,
+  metro1: Int!,
+  metro2: Int!,
+  metro3: Int!,
+  metro4: Int!,
+}
+
+type Query {
+  fetchSettings(id: ID!): Settings
+}

@@ -62,3 +62,45 @@ mutation updateGalons(
 }
 }
 `
+export const CREATE_NEW_SETTING = gql`
+mutation createGalons(
+  $id: ID!,
+  $price: Int!,
+  $metro1: Int!,
+  $metro2: Int!,
+  $metro3: Int!,
+  $metro4: Int!,
+) {
+  createGalons(input: {
+  id: $id, price: $price, metro1: $metro1,  metro2: $metro2, metro3: $metro3, metro4: $metro4,
+}) {
+  id
+  price
+  metro1
+  metro2
+  metro3
+  metro4
+}
+}
+`
+export const UPDATE_NEW_Settings = gql`
+mutation updateGalons(
+  $id: ID!,
+  $price: Int!,
+  $metro1: Int!,
+  $metro2: Int!,
+  $metro3: Int!,
+  $metro4: Int!,
+) {
+  updateGalons(input: {
+    id: $id, price: $price, metro1: $metro1,  metro2: $metro2, metro3: $metro3, metro4: $metro4,
+}) {
+  id
+  price
+  metro1
+  metro2
+  metro3
+  metro4
+}
+}
+`
